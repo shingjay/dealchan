@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,20 +22,32 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private UserRepository userService;
-    
+    private UserRepository userRepository;
+
+    /*
+     * Demonstrates a method accessed using GET at url /users
+     * As you can see, you can request a model ( just a map ) to put in stuff
+     * to be passed to the view
+     * The return will be searching within WEB-INF/views/ for a matching JSP
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        List<User> userList = userService.findAll();
+        List<User> userList = userRepository.findAll();
         
         Sort sort = new Sort( Sort.Direction.ASC, "username");
         
-        List<User> userListSorted = userService.findAll( sort);
+        List<User> userListSorted = userRepository.findAll( sort);
         model.addAttribute("userList", userList);
         model.addAttribute("sortedUserList", userListSorted);
         return "index";
     }
-    
+
+
+    /*
+     * This method demonstrates the ability to get url parameter ( works for post too )
+     * and using the value to store
+     * and redirect to index when done
+     */
     @RequestMapping(value = "seed", method = RequestMethod.GET)
     public String seed( @RequestParam String username) {
         if(username == null ) {
@@ -46,14 +55,33 @@ public class HomeController {
         } else {
             User user = new User();
             user.setUsername(username);
-            userService.save(user);
+            userRepository.save(user);
         }
         return "redirect:/users";
     }
+    
+    
 
+    /*
+     * Shows how to retunr a json  - just return any java object
+     * It is a good practice to create a DTO ( Data Transfer Object ) and
+     * return only the necessary component
+     */
     @RequestMapping(value = "json", method = RequestMethod.GET)
     public @ResponseBody List<User> json() {
-        return userService.findAll();
+        return userRepository.findAll();
+    }
+
+    /*
+     * Example to show how to use restful url to return result
+     * In this case, the get the user id from the url itself and display
+     * The return type would be json --> since we will most likely be returning json
+     */
+    @RequestMapping(value = "{id}/json")
+    @ResponseBody
+    public User user(@PathVariable("id") Long userId) {
+        User user = userRepository.findOne(userId);
+        return user;
     }
 
 
