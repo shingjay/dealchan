@@ -1,8 +1,7 @@
 package com.dealchan.backend.domain;
 
-import com.sun.istack.internal.NotNull;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,13 +12,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     
     @Id
+    @Basic
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( name = "id")
     private Long id;
 
-    @NotNull
+    @Basic
+    @Column(name = "username")
     private String username;
 
     public Long getId() {
@@ -37,4 +41,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    // remember to override hashCode and equals method ----> important optimization
 }
