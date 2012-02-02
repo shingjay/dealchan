@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -48,6 +49,11 @@ public class HomeController {
             userService.save(user);
         }
         return "redirect:/users";
+    }
+
+    @RequestMapping(value = "json", method = RequestMethod.GET)
+    public @ResponseBody List<User> json() {
+        return userService.findAll();
     }
 
 
