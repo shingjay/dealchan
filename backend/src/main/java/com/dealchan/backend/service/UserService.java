@@ -21,7 +21,7 @@ public class UserService {
     public void seed() {
 
         User user = new User();
-        user.setUsername("fuckyou");
+        user.setUsername("benice");
         userRepository.save(user);
 
     }
