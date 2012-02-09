@@ -2,15 +2,17 @@ import pymysql
 import os
 import re
 import nltk
+from corpus import getStopwordsCorpus()
 
 text_path = '/home/yingzhe/Desktop/seniordesign/datatext'
 
 def processTitle(title):
+	stopwords = getStopwordsCorpus()
 	pattern = re.compile('\w+')
 	postext = nltk.pos_tag(nltk.word_tokenize(title))
 	wordslist = []
 	for w, t in postext:
-		if pattern.match(w) is not None and (t == 'NN' or t == 'NNS' or t == 'NNP' or t == 'NNPS'):
+		if pattern.match(w) is not None and (t == 'NN' or t == 'NNS' or t == 'NNP' or t == 'NNPS') and w not in set(stopwords.words()):
 			wordslist.append(w)
 	return ' '.join(wordslist)
 
