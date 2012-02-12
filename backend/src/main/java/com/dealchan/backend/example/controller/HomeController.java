@@ -1,7 +1,7 @@
-package com.dealchan.backend.controller;
+package com.dealchan.backend.example.controller;
 
-import com.dealchan.backend.domain.User;
-import com.dealchan.backend.repository.UserRepository;
+import com.dealchan.backend.example.domain.User;
+import com.dealchan.backend.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;

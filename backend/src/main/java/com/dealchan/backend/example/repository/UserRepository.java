@@ -1,6 +1,6 @@
-package com.dealchan.backend.repository;
+package com.dealchan.backend.example.repository;
 
-import com.dealchan.backend.domain.User;
+import com.dealchan.backend.example.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

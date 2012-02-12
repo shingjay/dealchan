@@ -1,4 +1,4 @@
-package com.dealchan.backend.domain;
+package com.dealchan.backend.example.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
