@@ -20,6 +20,13 @@
 
     <dependencies>
 
+        <!-- rss -->
+        <dependency>
+            <groupId>rome</groupId>
+            <artifactId>rome</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <!-- jackson -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
