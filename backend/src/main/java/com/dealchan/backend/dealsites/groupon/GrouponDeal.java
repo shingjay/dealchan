@@ -1,5 +1,6 @@
 package com.dealchan.backend.dealsites.groupon;
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class GrouponDeal {
     private String city;
     private double currentPrice;
     private double discount;
-    private double saved;
+    private double saving;
     private double originalPrice;
     private String timeLeft;
     private String extraInformation;
@@ -38,7 +39,7 @@ public class GrouponDeal {
         if (Double.compare(that.currentPrice, currentPrice) != 0) return false;
         if (Double.compare(that.discount, discount) != 0) return false;
         if (Double.compare(that.originalPrice, originalPrice) != 0) return false;
-        if (Double.compare(that.saved, saved) != 0) return false;
+        if (Double.compare(that.saving, saving) != 0) return false;
         if (city != null ? !city.equals(that.city) : that.city != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (extraInformation != null ? !extraInformation.equals(that.extraInformation) : that.extraInformation != null)
@@ -65,7 +66,7 @@ public class GrouponDeal {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = discount != +0.0d ? Double.doubleToLongBits(discount) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = saved != +0.0d ? Double.doubleToLongBits(saved) : 0L;
+        temp = saving != +0.0d ? Double.doubleToLongBits(saving) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = originalPrice != +0.0d ? Double.doubleToLongBits(originalPrice) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -141,12 +142,12 @@ public class GrouponDeal {
         this.originalPrice = originalPrice;
     }
 
-    public double getSaved() {
-        return saved;
+    public double getSaving() {
+        return saving;
     }
 
-    public void setSaved(double saved) {
-        this.saved = saved;
+    public void setSaving(double saving) {
+        this.saving = saving;
     }
 
     public String getTimeLeft() {

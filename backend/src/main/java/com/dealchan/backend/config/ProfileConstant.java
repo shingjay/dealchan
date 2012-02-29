@@ -11,4 +11,6 @@ public class ProfileConstant {
         public static final String DEV_PROFILE = "dev";
         public static final String PROD_PROFILE = "prod";
         public static final String TEST_PROFILE = "test";
+        public static final String YINGZHE_PROFILE = "yingzhe";
+        public static final String ANBIN_PROFILE = "anbin";
 }

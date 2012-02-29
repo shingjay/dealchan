@@ -37,6 +37,7 @@ public class HomeController {
         Sort sort = new Sort( Sort.Direction.ASC, "username");
         
         List<User> userListSorted = userRepository.findAll( sort);
+
         model.addAttribute("userList", userList);
         model.addAttribute("sortedUserList", userListSorted);
         return "index";

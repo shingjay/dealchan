@@ -214,4 +214,5 @@ public class DealSource {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
+
 }
