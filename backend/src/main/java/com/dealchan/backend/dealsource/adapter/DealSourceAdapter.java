@@ -11,7 +11,7 @@ import java.util.Collection;
  * Time: 1:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public interface DealSiteDealSourceAdapter<T> {
+public interface DealSourceAdapter<T> {
     public DealSource convert(T object);
     public Collection<DealSource> convert(Collection<T> objectList);
 }

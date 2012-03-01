@@ -15,8 +15,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private void setUserRepository(UserRepository userRepository1) {
+        this.userRepository = userRepository;
+    }
 
     public void seed() {
 

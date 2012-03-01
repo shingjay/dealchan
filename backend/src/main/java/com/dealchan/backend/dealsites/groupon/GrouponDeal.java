@@ -26,6 +26,7 @@ public class GrouponDeal {
     private boolean active;
     private boolean bought;
     private String image;
+    private String quote;
 
     @Override
     public boolean equals(Object o) {

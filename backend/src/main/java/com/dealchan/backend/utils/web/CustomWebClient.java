@@ -1,4 +1,4 @@
-package com.dealchan.utils.web;
+package com.dealchan.backend.utils.web;
 
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -14,8 +14,10 @@ import java.io.InputStream;
  * To change this template use File | Settings | File Templates.
  */
 public interface CustomWebClient {
+
     public String getIpAddress();
     public void setIpAddress(String ipAddress);
+
     public WebClient getWebClient();
     public Page getPage(String url);
     public void setBasicAuthentication(String username, String password);

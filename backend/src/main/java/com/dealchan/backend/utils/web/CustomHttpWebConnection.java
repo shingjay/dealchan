@@ -1,4 +1,4 @@
-package com.dealchan.utils.web;
+package com.dealchan.backend.utils.web;
 
 import com.gargoylesoftware.htmlunit.HttpWebConnection;
 import com.gargoylesoftware.htmlunit.WebClient;

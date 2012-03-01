@@ -1,4 +1,4 @@
-package com.dealchan.utils.web;
+package com.dealchan.backend.utils.web;
 
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;

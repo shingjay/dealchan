@@ -1,7 +1,8 @@
 package com.dealchan.backend.admin.scheduler;
 
 import com.dealchan.backend.dealsites.DealSiteService;
-import com.dealchan.backend.dealsource.adapter.DealSiteDealSourceAdapter;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,8 +11,9 @@ import com.dealchan.backend.dealsource.adapter.DealSiteDealSourceAdapter;
  * Time: 3:29 AM
  * To change this template use File | Settings | File Templates.
  */
-public interface CrawlingService<T> {
-    public DealSiteDealSourceAdapter<T> getDealSiteDealSourceAdapter();
-    public DealSiteService<T> getDealSiteService();
+public interface CrawlingService {
     public void crawl();
+    public void stopAll();
+    public void stop(DealSiteService dealSiteService);
+    public List<CrawlerStatus> getCrawlerStatus();
 }

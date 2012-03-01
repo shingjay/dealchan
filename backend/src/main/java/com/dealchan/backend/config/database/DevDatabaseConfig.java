@@ -1,7 +1,8 @@
 package com.dealchan.backend.config.database;
 
 import com.dealchan.backend.config.ProfileConstant;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dealchan.backend.utils.web.CustomWebClient;
+import com.dealchan.backend.utils.web.CustomWebClientImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -11,7 +12,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
@@ -25,9 +25,19 @@ import java.util.Properties;
 @Profile(ProfileConstant.DEV_PROFILE)
 public class DevDatabaseConfig {
 
-    @Autowired
-    private DataSource dataSource;
+    public CustomWebClientImpl create() {
+        return new CustomWebClientImpl();
+    }
 
+    @Bean(name = "currentWebClient")
+    public CustomWebClient getClient() {
+        return create();
+    }
+
+    @Bean(name = "oldImpl")
+    public CustomWebClient getOldClient() {
+        return create();
+    }
 
     @Bean
     public JpaTransactionManager transactionManager() {
@@ -40,7 +50,7 @@ public class DevDatabaseConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setPackagesToScan("com.dealchan.backend");
-        entityManagerFactory.setDataSource(dataSource);
+        entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
 
         Properties jpaProperties = new Properties();
@@ -59,5 +69,14 @@ public class DevDatabaseConfig {
         return jpaVendorAdapter;
     }
 
+    @Bean
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource source = new DriverManagerDataSource();
+        source.setUrl("jdbc:mysql://localhost:3306/Test");
+        source.setUsername("root");
+        source.setPassword("root");
+        source.setDriverClassName("com.mysql.jdbc.Driver");
 
+        return source;
+    }
 }

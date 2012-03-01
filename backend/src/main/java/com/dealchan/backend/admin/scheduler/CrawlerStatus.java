@@ -1,6 +1,6 @@
-package com.dealchan.backend.admin.service;
+package com.dealchan.backend.admin.scheduler;
 
-import com.dealchan.backend.admin.scheduler.CrawlingService;
+import com.dealchan.backend.dealsites.DealSiteService;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,7 +13,7 @@ public class CrawlerStatus {
     
     private String name;
     private Status status;
-    private CrawlingService service;
+    private DealSiteService service;
 
     public String getName() {
         return name;
@@ -21,6 +21,22 @@ public class CrawlerStatus {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DealSiteService getService() {
+        return service;
+    }
+
+    public void setService(DealSiteService service) {
+        this.service = service;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public enum Status {
