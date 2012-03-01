@@ -162,16 +162,22 @@
             <groupId>javax</groupId>
             <artifactId>javaee-endorsed-api</artifactId>
             <version>6.0</version>
+            <scope>provided</scope>
+
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>6.0</version>
+            <scope>provided</scope>
+
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
+            <scope>provided</scope>
+
         </dependency>
 
 
@@ -193,7 +199,29 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.servlet</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.0.2.GA</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>3.0.1-b02</version>
+        </dependency>
     </dependencies>
 
 
@@ -203,6 +231,18 @@
             <name>Spring Maven Milestone Repository</name>
             <url>http://maven.springframework.org/milestone</url>
         </repository>
+
+        <!-- need for testing -->
+        <repository>
+            <id>glassfish-repository</id>
+            <url>http://download.java.net/maven/glassfish</url>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <name>JBoss repository</name>
+            <url>http://repository.jboss.org/maven2</url>
+        </repository>
+
     </repositories>
 
     <build>

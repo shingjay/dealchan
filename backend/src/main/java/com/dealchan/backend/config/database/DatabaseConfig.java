@@ -1,14 +1,20 @@
 package com.dealchan.backend.config.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,12 +25,41 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@ImportResource("WEB-INF/spring/jpa-config.xml")
+@ImportResource("/WEB-INF/spring/jpa-config.xml")
 public class DatabaseConfig implements TransactionManagementConfigurer {
 
     @Autowired
     DataSource dataSource;
 
+    @Bean
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getNativeEntityManagerFactory());
+        return transactionManager;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactory.setPackagesToScan("com.dealchan.backend");
+        entityManagerFactory.setDataSource(dataSource);
+        entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
+
+        Properties jpaProperties = new Properties();
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+        entityManagerFactory.setJpaProperties(jpaProperties);
+
+        return entityManagerFactory;
+    }
+
+    @Bean
+    public HibernateJpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setDatabase(Database.MYSQL);
+        jpaVendorAdapter.setShowSql(true);
+        jpaVendorAdapter.setGenerateDdl(true);
+        return jpaVendorAdapter;
+    }
 
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {

@@ -1,7 +1,7 @@
 package com.dealchan.backend.config.core;
 
 import com.dealchan.backend.ComponentScanMarker;
-import com.dealchan.utils.web.CustomWebClientImpl;
+import com.dealchan.backend.utils.web.CustomWebClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
