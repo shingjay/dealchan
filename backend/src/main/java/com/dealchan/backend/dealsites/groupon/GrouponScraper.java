@@ -93,8 +93,11 @@ public class GrouponScraper {
         }
     }
     
-    
+
     public static void main(String args[]) throws FeedException {
+
+
+
         CustomWebClient client = new CustomWebClientImpl();
         GrouponScraper scraper = new GrouponScraper();
         scraper.webClient = client;

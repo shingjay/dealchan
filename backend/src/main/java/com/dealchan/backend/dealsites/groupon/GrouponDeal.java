@@ -1,9 +1,6 @@
 package com.dealchan.backend.dealsites.groupon;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -23,6 +20,8 @@ public class GrouponDeal {
 
     private String title;
     private String link;
+
+    @Lob
     private String description;
     private Date pubDate;
     private String city;
