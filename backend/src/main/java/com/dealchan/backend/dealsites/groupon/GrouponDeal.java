@@ -105,7 +105,7 @@ public class GrouponDeal {
         this.active = active;
     }
 
-    public int isBought() {
+    public int getBought() {
         return bought;
     }
 

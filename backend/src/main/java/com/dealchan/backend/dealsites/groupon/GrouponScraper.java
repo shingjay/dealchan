@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 
@@ -62,14 +63,33 @@ public class GrouponScraper {
             deal.setSaving(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]").get(0))).asText().split("RM")[1]));
             deal.setOriginalPrice(deal.getCurrentPrice() + deal.getSaving());
 
-            //xpath for hour: //*[@id="hoursLeft"]
-            int hour = Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText());
             Calendar timeNow = Calendar.getInstance();
+            //xpath for hour: //*[@id="hoursLeft"]
+            timeNow.add(Calendar.HOUR, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText()));
+            //xpath for minute: //*[@id="minutesLeft"]
+            timeNow.add(Calendar.MINUTE, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"minutesLeft\"]").get(0))).asText()));
+            //xpath for second: //*[@id="secondsLeft"]
+            timeNow.add(Calendar.SECOND, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"secondsLeft\"]").get(0))).asText()));
+            deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
 
+            //xpath for active deal://*[@id="dealTakePlace"]
+            try
+            {
+                deal.setActive(!htmlPage.getByXPath("//*[@id=\"dealTakePlace\"]").isEmpty());
+            }
+            catch (Exception e)
+            {
+                deal.setActive(false);
+            }
+            System.out.println("active: " + deal.isActive());
+            //xpath for amount sold: //*[@id=""jDealSoldAmount""]
+            deal.setBought(Integer.parseInt(((HtmlSpan)(htmlPage.getByXPath("//*[@id=\"jDealSoldAmount\"]").get(0))).asText()));
+            System.out.println("bought: " + deal.getBought());
             //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
-            deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img"))).getSrcAttribute());
+            deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
 
-            //System.out.println(deal.getDiscount());
+            System.out.println(deal.toString());
+            grouponDealRepository.save(deal);
         }
     }
     
