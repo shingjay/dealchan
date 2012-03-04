@@ -1,6 +1,6 @@
 package com.dealchan.backend.dealsites.groupon;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -21,12 +21,11 @@ public class GrouponDeal {
     private double discount;
     private double saving;
     private double originalPrice;
-    private String timeLeft;
+    private Timestamp timeEnds;
     private String extraInformation;
     private boolean active;
-    private boolean bought;
+    private int bought;
     private String image;
-    private String quote;
 
     @Override
     public boolean equals(Object o) {
@@ -48,7 +47,7 @@ public class GrouponDeal {
         if (image != null ? !image.equals(that.image) : that.image != null) return false;
         if (link != null ? !link.equals(that.link) : that.link != null) return false;
         if (pubDate != null ? !pubDate.equals(that.pubDate) : that.pubDate != null) return false;
-        if (timeLeft != null ? !timeLeft.equals(that.timeLeft) : that.timeLeft != null) return false;
+        if (timeEnds != null ? !timeEnds.equals(that.timeEnds) : that.timeEnds != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
 
         return true;
@@ -71,10 +70,10 @@ public class GrouponDeal {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = originalPrice != +0.0d ? Double.doubleToLongBits(originalPrice) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (timeLeft != null ? timeLeft.hashCode() : 0);
+        result = 31 * result + (timeEnds != null ? timeEnds.hashCode() : 0);
         result = 31 * result + (extraInformation != null ? extraInformation.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
-        result = 31 * result + (bought ? 1 : 0);
+        result = 31 * result + bought;
         result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
     }
@@ -87,11 +86,11 @@ public class GrouponDeal {
         this.active = active;
     }
 
-    public boolean isBought() {
+    public int isBought() {
         return bought;
     }
 
-    public void setBought(boolean bought) {
+    public void setBought(int bought) {
         this.bought = bought;
     }
 
@@ -151,12 +150,12 @@ public class GrouponDeal {
         this.saving = saving;
     }
 
-    public String getTimeLeft() {
-        return timeLeft;
+    public Timestamp getTimeEnds() {
+        return timeEnds;
     }
 
-    public void setTimeLeft(String timeLeft) {
-        this.timeLeft = timeLeft;
+    public void setTimeEnds(Timestamp timeEnds) {
+        this.timeEnds = timeEnds;
     }
 
     public String getDescription() {

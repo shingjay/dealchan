@@ -1,9 +1,8 @@
 package com.dealchan.backend.dealsites.groupon;
 
-import com.dealchan.backend.dealsites.DealSiteService;
 import com.dealchan.backend.utils.web.CustomWebClient;
 import com.dealchan.backend.utils.web.CustomWebClientImpl;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.*;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
@@ -12,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
-import javax.inject.Qualifier;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -23,18 +22,20 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-public class GrouponScraper implements DealSiteService<GrouponDeal> {
+public class GrouponScraper {
     
     public static final String GROUPON_URL = "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur";
 
-//    @Autowired
+    @Autowired
     private CustomWebClient webClient;
+
+    @Autowired
+    private GrouponDealRepository grouponDealRepository;
 
     public void scrap() throws FeedException {
 
         Document doc = webClient.getPageAsXml(GROUPON_URL);
 
-        // deals with rss
         SyndFeedInput syndFeedInput = new SyndFeedInput();
         SyndFeed feed = syndFeedInput.build(doc);
         List<SyndEntry> feedList = feed.getEntries();
@@ -47,19 +48,32 @@ public class GrouponScraper implements DealSiteService<GrouponDeal> {
             deal.setPubDate(f.getPublishedDate());
             deal.setTitle(f.getTitle());
 
-            // visist the link
-            HtmlPage page = (HtmlPage) webClient.getPage(deal.getLink());
+            // visit the link
+            HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
+            
 
-            // your code here
+            //xpath of city: /html/body/div/div[8]/div/a/span/span
+            deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
+            //xpath of currentPrice: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span
+            deal.setCurrentPrice(Double.parseDouble(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span").get(0))).asText().split("RM")[1]));
+            //xpath of discount: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td
+            deal.setDiscount(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td").get(0))).asText().split("%")[0]));
+            //xpath of saving: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]
+            deal.setSaving(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]").get(0))).asText().split("RM")[1]));
+            deal.setOriginalPrice(deal.getCurrentPrice() + deal.getSaving());
 
+            //xpath for hour: //*[@id="hoursLeft"]
+            int hour = Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText());
+            Calendar timeNow = Calendar.getInstance();
+
+            //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
+            deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img"))).getSrcAttribute());
+
+            //System.out.println(deal.getDiscount());
         }
     }
-
-    @Override
-    public List<GrouponDeal> getDealsOfTheDay() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
+    
+    
     public static void main(String args[]) throws FeedException {
         CustomWebClient client = new CustomWebClientImpl();
         GrouponScraper scraper = new GrouponScraper();
