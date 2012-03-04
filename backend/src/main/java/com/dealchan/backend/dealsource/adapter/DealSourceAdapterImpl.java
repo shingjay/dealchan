@@ -38,8 +38,12 @@ public class DealSourceAdapterImpl implements DealSourceAdapter, ApplicationCont
 
         BeanUtils.copyProperties(object, source);
 
+        // TargetClassAware to get base class
+
+        // casting to TargetClassAware if it is not a BEAN!
+
         if(customMapping.containsKey(object.getClass())) {
-            
+
             Properties properties = customMapping.get(object.getClass());
             
             for(String propertyName : properties.stringPropertyNames()) {
