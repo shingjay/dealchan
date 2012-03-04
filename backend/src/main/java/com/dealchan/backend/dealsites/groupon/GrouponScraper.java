@@ -44,24 +44,31 @@ public class GrouponScraper {
         for(SyndEntry f : feedList) {
 
             GrouponDeal deal = new GrouponDeal();
-            deal.setDescription(f.getDescription().toString());
+            deal.setDescription(f.getDescription().getValue());
+            System.out.println(deal.getDescription());
             deal.setLink(f.getLink());
             deal.setPubDate(f.getPublishedDate());
             deal.setTitle(f.getTitle());
 
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
-            
 
             //xpath of city: /html/body/div/div[8]/div/a/span/span
             deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
             //xpath of currentPrice: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span
             deal.setCurrentPrice(Double.parseDouble(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span").get(0))).asText().split("RM")[1]));
             //xpath of discount: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td
-            deal.setDiscount(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td").get(0))).asText().split("%")[0]));
-            //xpath of saving: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]
-            deal.setSaving(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]").get(0))).asText().split("RM")[1]));
-            deal.setOriginalPrice(deal.getCurrentPrice() + deal.getSaving());
+            if (!htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td").isEmpty())
+            {
+                deal.setDiscount(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td").get(0))).asText().split("%")[0]));
+                //xpath of saving: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]
+                deal.setSaving(Double.parseDouble(((HtmlTableDataCell)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td[2]").get(0))).asText().split("RM")[1].replaceAll(",", "")));
+                deal.setOriginalPrice(deal.getCurrentPrice() + deal.getSaving());
+            }
+            else
+            {
+                deal.setOriginalPrice(deal.getCurrentPrice());
+            }
 
             Calendar timeNow = Calendar.getInstance();
             //xpath for hour: //*[@id="hoursLeft"]
@@ -73,22 +80,20 @@ public class GrouponScraper {
             deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
 
             //xpath for active deal://*[@id="dealTakePlace"]
-            try
-            {
-                deal.setActive(!htmlPage.getByXPath("//*[@id=\"dealTakePlace\"]").isEmpty());
-            }
-            catch (Exception e)
-            {
-                deal.setActive(false);
-            }
-            System.out.println("active: " + deal.isActive());
+            deal.setActive(!htmlPage.getByXPath("//*[@id=\"dealTakePlace\"]").isEmpty());
+
             //xpath for amount sold: //*[@id=""jDealSoldAmount""]
-            deal.setBought(Integer.parseInt(((HtmlSpan)(htmlPage.getByXPath("//*[@id=\"jDealSoldAmount\"]").get(0))).asText()));
-            System.out.println("bought: " + deal.getBought());
+            if (((HtmlSpan)(htmlPage.getByXPath("//*[@id=\"jDealSoldAmount\"]").get(0))).asText().equals(""))
+            {
+                deal.setBought(0);
+            }
+            else
+            {
+                deal.setBought(Integer.parseInt(((HtmlSpan)(htmlPage.getByXPath("//*[@id=\"jDealSoldAmount\"]").get(0))).asText()));
+            }
             //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
             deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
 
-            System.out.println(deal.toString());
             grouponDealRepository.save(deal);
         }
     }

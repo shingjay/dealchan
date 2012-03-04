@@ -18,7 +18,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
  * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(profiles = ProfileConstant.ANBIN_PROFILE)
+@ActiveProfiles(profiles = ProfileConstant.YINGZHE_PROFILE)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {TestContext.class})
 public class GrouponScraperTest {
 

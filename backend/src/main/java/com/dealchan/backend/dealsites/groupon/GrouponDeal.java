@@ -22,7 +22,9 @@ public class GrouponDeal {
     private String link;
 
     @Lob
+    @Basic
     private String description;
+
     private Date pubDate;
     private String city;
     private double currentPrice;
