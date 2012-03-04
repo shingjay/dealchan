@@ -19,7 +19,7 @@ import java.util.List;
  * Time: 1:10 AM
  * To change this template use File | Settings | File Templates.
  */
-@Service
+
 public class CrawlingServiceImpl implements CrawlingService{
     
     @Autowired

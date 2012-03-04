@@ -1,5 +1,9 @@
 package com.dealchan.backend.dealsites.groupon;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,8 +14,13 @@ import java.util.Date;
  * Time: 8:38 AM
  * To change this template use File | Settings | File Templates.
  */
+@Entity
 public class GrouponDeal {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String title;
     private String link;
     private String description;
@@ -27,6 +36,14 @@ public class GrouponDeal {
     private int bought;
     private String image;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,6 +55,7 @@ public class GrouponDeal {
         if (bought != that.bought) return false;
         if (Double.compare(that.currentPrice, currentPrice) != 0) return false;
         if (Double.compare(that.discount, discount) != 0) return false;
+        if (id != that.id) return false;
         if (Double.compare(that.originalPrice, originalPrice) != 0) return false;
         if (Double.compare(that.saving, saving) != 0) return false;
         if (city != null ? !city.equals(that.city) : that.city != null) return false;
@@ -57,7 +75,8 @@ public class GrouponDeal {
     public int hashCode() {
         int result;
         long temp;
-        result = title != null ? title.hashCode() : 0;
+        result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (link != null ? link.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (pubDate != null ? pubDate.hashCode() : 0);

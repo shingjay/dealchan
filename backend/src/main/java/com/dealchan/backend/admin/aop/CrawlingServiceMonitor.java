@@ -22,7 +22,6 @@ import java.util.List;
  * Time: 1:52 AM
  * To change this template use File | Settings | File Templates.
  */
-@Component
 @Aspect
 public class CrawlingServiceMonitor {
     

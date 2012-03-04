@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Time: 3:24 AM
  * To change this template use File | Settings | File Templates.
  */
-@Controller
 @RequestMapping("/admin")
 public class AdminController {
 
