@@ -1,4 +1,4 @@
-package com.dealchan.backend.dealsites.groupon;
+package com.dealchan.backend.dealsites.groupon.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

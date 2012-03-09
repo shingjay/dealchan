@@ -2,6 +2,7 @@ package com.dealchan.backend.dealsites.groupon;
 
 import com.dealchan.backend.config.ProfileConstant;
 import com.dealchan.backend.config.database.TestContext;
+import com.dealchan.backend.dealsites.groupon.service.GrouponScraperService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,10 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 public class GrouponScraperTest {
 
     @Autowired
-    private GrouponScraper scraper;
+    private GrouponScraperService scraperService;
 
     @Test
     public void testScrap() throws Exception {
-        scraper.scrap();
+        scraperService.scrap();
     }
 }

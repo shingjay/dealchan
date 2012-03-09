@@ -1,5 +1,6 @@
-package com.dealchan.backend.dealsites.groupon;
+package com.dealchan.backend.dealsites.groupon.repository;
 
+import com.dealchan.backend.dealsites.groupon.entity.GrouponDeal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
