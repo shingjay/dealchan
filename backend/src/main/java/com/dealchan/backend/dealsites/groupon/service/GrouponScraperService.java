@@ -31,6 +31,11 @@ public class GrouponScraperService implements DealSiteService  {
     
     public static final String GROUPON_URL = "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur";
 
+    // reference to jay
+  //  String URL_FORMAT = "http://dummy.com/%s";
+  //  String url = String.format(URL_FORMAT, "hello");
+    // reference to jay
+
     @Autowired
     private CustomWebClient webClient;
 
@@ -51,11 +56,13 @@ public class GrouponScraperService implements DealSiteService  {
 
             GrouponDeal deal = new GrouponDeal();
             deal.setDescription(f.getDescription().getValue());
-            System.out.println(deal.getDescription());
+            //System.out.println(deal.getDescription());
             deal.setLink(f.getLink());
             deal.setPubDate(f.getPublishedDate());
             deal.setTitle(f.getTitle());
 
+            System.out.println(deal.getLink());
+            
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
 
@@ -100,7 +107,7 @@ public class GrouponScraperService implements DealSiteService  {
             //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
             deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
 
-            deal = grouponDealRepository.save(deal);
+//            deal = grouponDealRepository.save(deal);
             grouponDealList.add(deal);
         }
 
