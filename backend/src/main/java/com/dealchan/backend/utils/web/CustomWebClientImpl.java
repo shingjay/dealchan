@@ -77,7 +77,7 @@ public class CustomWebClientImpl implements CustomWebClient {
 
     public Page getPage( String url ) {
         try {
-            System.out.println(url);
+            //System.out.println(url);
             Page page = webClient.getPage(url);
 
             if(page.getWebResponse().getStatusCode() >= 400) {
