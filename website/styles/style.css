@@ -156,10 +156,9 @@ a:hover {
 .dealPicture {
 	background-color: #adadad;
 	margin: 0px;
-	padding: 10px 0px 10px 0px;
 	border: solid 1px;
 	text-align: center;
-	height: 100px;
+	height: 150px;
 	width: auto;
 }
 
