@@ -3,11 +3,23 @@
 body div p{
 	font-family: Helvetica, Arial, Geneva, sans-serif;
 	font-size: 12px;
+	text-align: center;
+}
+
+a, a:link, a:visited, a:active {
+	font-weight:			bold;
+	text-decoration:		none;
+	color:					#4682b4;
+}
+
+a:hover {
+	text-decoration:		none;
+	color:					#164c76;
 }
 
 /* TOP
 ------------------------------------------------------------------*/
-.HeaderBar {
+.headerBar {
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -21,14 +33,13 @@ body div p{
 	-webkit-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4);
 }
 
-.CategoriesBar {
+.categoriesBar {
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	padding: 0px;
 	margin-top: 40px;
 	width: 100%;
-	height: 40px;
 	background-color: #efefef;
 	box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); 
 	-moz-box-shadow: inset 0 1px #fff, 0 1px 2px rgba(34,25,25,0.4); 
@@ -36,17 +47,36 @@ body div p{
 	border-top: 1px solid #cfcaca; 
 }
 
+.categoriesBar {
+	margin-top: 40px;
+}
+
+.categoriesBar ul {
+	margin: 0;
+	text-align: center;			/* centers the navigation bar */
+	list-style-type: none;		/* eliminate list item marker */
+}
+
+.categoriesBar ul li {
+	display: inline;			/* needed to create horizontal effect */
+	font-size: 28px;
+}
+
+.categoriesBar ul li a {
+	text-decoration: none;
+	padding: .2em .1em;
+}
 
 /* BOTTOM
 ------------------------------------------------------------------*/
-.Bottom {
+.bottom {
 	margin-top: 100px;
 }
 
 
 /* DEAL CONTAINERS
 ------------------------------------------------------------------*/
-.ContainerLabel {
+.containerLabel {
 	margin-top: 50px;
 	border: solid 1px;
 	text-align: center;
@@ -54,12 +84,12 @@ body div p{
 	width: auto;
 }
 
-.DealContainer {
+.dealContainer {
 	padding: 10px 0px 10px 0px;
 	border: solid 1px;
 }
 
-.DealPicture {
+.dealPicture {
 	background-color: #adadad;
 	margin: 0px;
 	padding: 10px 0px 10px 0px;
@@ -69,7 +99,7 @@ body div p{
 	width: auto;
 }
 
-.DealTitle {
+.dealTitle {
 	background-color: #efefef;
 	margin-top: 5px;
 	padding: 0px;
@@ -79,7 +109,7 @@ body div p{
 	width: auto;
 }
 
-.DealDescription {
+.dealDescription {
 	background-color: #ededed;
 	margin-top: 5px;
 	padding: 0px;
@@ -89,7 +119,7 @@ body div p{
 	width: auto;
 }
 
-.ShowMore {
+.showMoreButton {
 	border: solid 1px;
 	text-align: center;
 	height: 20px;
