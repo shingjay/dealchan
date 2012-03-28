@@ -25,6 +25,10 @@ a:hover {
 
 /* TOP
 ------------------------------------------------------------------*/
+.top {
+	font-size: 18px;
+}
+
 .headerBar {
 	position: fixed;
 	top: 0px;
@@ -56,19 +60,45 @@ a:hover {
 }
 
 .categoriesBar ul {
-	margin-top: 4px;
+	margin-top: 5px;
 	text-align: center;			/* centers the navigation bar */
-	list-style-type: none;		/* eliminate list item marker */
+	list-style: none;		/* eliminate list item marker */
 }
 
 .categoriesBar ul li {
 	display: inline;			/* needed to create horizontal effect */
-	font-size: 20px;
+	margin: 0;					/* fixes the categories bar margin */
+	padding: 0;
 }
 
 .categoriesBar ul li a {
 	text-decoration: none;
-	padding: .2em .1em;
+	/*padding: .2em .1em;*/
+	padding: 7px 10px 11px 10px;
+}
+
+.categoriesBar a:hover {
+	background-color: #bfc9ce;		/* hover over background color */
+}
+
+.categoriesBar #priceNav {
+	margin-left: -10px;
+	padding: 7px 20px 11px 20px;
+}
+
+.categoriesBar #categoryNav {
+	margin-left: 0px;
+}
+
+.leftHeaderBar {
+	float: left;
+	display: inline;
+}
+
+#logo {
+	position: absolute;
+	left: 50%;					/* center the logo */
+	margin-left: -100px;		/* 200px/2 = 100px */
 }
 
 #logo img{
@@ -90,8 +120,25 @@ a:hover {
 	float: left;
 }
 
-.about {
-	font-size: 18px;
+.about a {
+	padding: 20px 15px 40px 5px;
+	position: relative;
+}
+
+.about a:hover {
+	background-color: #bfc9ce;			/* hover over background color */
+}
+
+.about span {
+	position: absolute;
+	padding: 0 10px 0 0;
+	top: 30px;
+	right: 0px;
+	width: 7px;
+	height: 6px;
+	background-image: url(gray-down-arrow.png);
+	background-position: top center;
+	background-repeat: no-repeat;
 }
 
 .socialButtons a {
