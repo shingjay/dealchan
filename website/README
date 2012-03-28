@@ -4,8 +4,14 @@
 /images
 	Contains image files.
 
+/javascripts
+	Contains javascripts.
+
+/plugins
+	Contains jQuery, JS, CoffeeScript libraries and frameworks.
+
 /styles
-	Contains css stylesheets.
+	Contains CSS stylesheets.
 
 index.html
 	Main webpage.
