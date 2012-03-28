@@ -135,9 +135,6 @@ public class GrouponScraperService implements DealSiteService  {
     }
 
     public static void main(String args[]) throws FeedException {
-
-
-
         CustomWebClient client = new CustomWebClientImpl();
         GrouponScraperService scraperService = new GrouponScraperService();
         scraperService.webClient = client;

@@ -162,6 +162,10 @@ a:hover {
 	width: auto;
 }
 
+.deal-picture {
+	border: solid 1px #000;
+}
+
 .dealTitle {
 	background-color: #efefef;
 	margin-top: 5px;
@@ -189,3 +193,7 @@ a:hover {
 	width: auto;
 	margin-bottom: 25px;
 }
+
+
+
+
