@@ -3,5 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-	Dealchan.Layouts.CityAskModal.cityaskmodal("#city-selection-modal")
-	$("#city-selection-modal").trigger('click')
+	Dealchan.Layouts.CityAskModal.cityAskModal("#city-selection-modal")
+	
+	# Trigger City Selection Modal
+	#$("#city-selection-modal").trigger('click')
+
+	Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal")

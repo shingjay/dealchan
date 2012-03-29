@@ -1,22 +1,18 @@
 Dealchan.Layouts ||= {}
 
-class Dealchan.Layouts.CityAskModal 
+class Dealchan.Layouts.ShowDealPopover
 	
-	this.template = JST["templates/layouts/city_ask_modal"]
+	this.template = JST["templates/layouts/show_deal_popover"]
 
 	this.fancyboxConfig = {
 		'autoSize'			: false,
 		'width'         	: 450,
 		'height'        	: 220,
 		'openEffect'		: 'none',
-		'closeEffect'		: 'fade',
 		'content'			: @template,
-		'closeBtn'			: false,
-		'closeClick'		: false,
-		'modal'				: true,
 		'padding'			: 0
 
 	}
 
-	this.cityAskModal = (element)->
+	this.showDealPopover = (element)->
 		$(element).fancybox( @fancyboxConfig )
