@@ -18,5 +18,5 @@ class Dealchan.Layouts.CityAskModal
 
 	}
 
-	this.cityaskmodal = (element)->
+	this.cityAskModal = (element)->
 		$(element).fancybox( @fancyboxConfig )
