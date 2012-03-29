@@ -5,12 +5,15 @@ class Dealchan.Layouts.ShowDealPopover
 	this.template = JST["templates/layouts/show_deal_popover"]
 
 	this.fancyboxConfig = {
-		'autoSize'			: false,
-		'width'         	: 450,
-		'height'        	: 220,
-		'openEffect'		: 'none',
-		'content'			: @template,
-		'padding'			: 0
+		'transitionIn'			:	'elastic',
+		'transitionOut'			:	'elastic',
+		'speedIn'				:	600, 
+		'speedOut'				:	200, 
+		'overlayShow'			:	true,
+		'content'				: 	@template,
+		'enableEscapeButton'	:   true,
+		'showCloseButton'		:   true,
+		'title'					:   'Winning!'
 
 	}
 

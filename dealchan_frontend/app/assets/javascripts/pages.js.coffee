@@ -8,4 +8,4 @@ jQuery ->
 	# Trigger City Selection Modal
 	#$("#city-selection-modal").trigger('click')
 
-	Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal")
+	Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal img")
