@@ -7,11 +7,11 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
+		<link rel="stylesheet" href="plugins/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 		<script type="text/javascript" src="plugins/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 		<script type="text/javascript" src="plugins/jquery.cookie.js"></script>
 		<script type="text/javascript" src="javascripts/index.js"></script>
-		<link rel="stylesheet" href="plugins/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 		<title>DealChan</title>
 	</head>
 
@@ -24,22 +24,16 @@
 			<div class="headerBar">
 
 				<span class="leftHeaderBar">
-
 				</span>
-
-				<span class="midHeaderBar">
-
-					<a href="/" id="logo">
-						<img src="images/dealchan_logo.png">
-					</a>
-
-				</span>
+					
+				<a href="/" id="logo">
+					<img src="images/dealchan_logo.png">
+				</a>
 
 				<span class="rightHeaderBar">
 					<ul>
 						<li class="about">
-							<a href="/">
-								<span>About</span>
+							<a href="/">About<span></span>
 							</a>
 						</li>
 						<li class="socialButtons">
@@ -61,10 +55,10 @@
 			<div class="categoriesBar">
 				<ul>
 					<li>
-						<a href="http://www.google.com">Price</a>
+						<a href="http://www.google.com" id="priceNav">Price</a>
 					</li>
 					<li>
-						<a href="http://www.purdue.edu">Category</a>
+						<a href="http://www.purdue.edu" id="categoryNav">Category</a>
 					</li>
 				</ul>
 			</div>
@@ -327,15 +321,13 @@
 			<!-- CONTAINER LABEL -->
 			<div class="grid_2 suffix_14">
 				<div class="containerLabel">
-					<p>Label</p>
+					<p>Shopping</p>
 				</div>
 			</div>
 			<!-- DEAL CONTAINER -->
 			<div class="grid_16 dealContainer">
 				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
+					<img src="images/shoppingpic1.jpg" class="grid_3 deal-picture">
 					<div class="grid_3 dealTitle">
 						<p>Title</p>
 					</div>
@@ -344,9 +336,7 @@
 					</div>
 				</div>
 				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
+					<img src="images/shoppingpic2.jpg" class="grid_3 deal-picture">
 					<div class="grid_3 dealTitle">
 						<p>Title</p>
 					</div>
@@ -355,9 +345,7 @@
 					</div>
 				</div>
 				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
+					<img src="images/shoppingpic1.jpg" class="grid_3 deal-picture">
 					<div class="grid_3 dealTitle">
 						<p>Title</p>
 					</div>
@@ -366,9 +354,7 @@
 					</div>
 				</div>
 				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
+					<img src="images/shoppingpic2.jpg" class="grid_3 deal-picture">
 					<div class="grid_3 dealTitle">
 						<p>Title</p>
 					</div>
@@ -377,9 +363,7 @@
 					</div>
 				</div>
 				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
+					<img src="images/shoppingpic1.jpg" class="grid_3 deal-picture">
 					<div class="grid_3 dealTitle">
 						<p>Title</p>
 					</div>
@@ -392,85 +376,6 @@
 			<div class="grid_2 prefix_14">
 				<div class="showMoreButton">
 					<p>Show more...</p>
-				</div>
-			</div>
-
-			<!-- CONTAINER LABEL -->
-			<div class="grid_2 suffix_14">
-				<div class="containerLabel">
-					<p>Label</p>
-				</div>
-			</div>
-			<!-- DEAL CONTAINER -->
-			<div class="grid_16 dealContainer">
-				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
-					<div class="grid_3 dealTitle">
-						<p>Title</p>
-					</div>
-					<div class="grid_3 dealDescription">
-						<p>Description</p>
-					</div>
-				</div>
-				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
-					<div class="grid_3 dealTitle">
-						<p>Title</p>
-					</div>
-					<div class="grid_3 dealDescription">
-						<p>Description</p>
-					</div>
-				</div>
-				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
-					<div class="grid_3 dealTitle">
-						<p>Title</p>
-					</div>
-					<div class="grid_3 dealDescription">
-						<p>Description</p>
-					</div>
-				</div>
-				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
-					<div class="grid_3 dealTitle">
-						<p>Title</p>
-					</div>
-					<div class="grid_3 dealDescription">
-						<p>Description</p>
-					</div>
-				</div>
-				<div class="grid_3 deal">
-					<div class="grid_3 dealPicture">
-						<p>Picture</p>
-					</div>
-					<div class="grid_3 dealTitle">
-						<p>Title</p>
-					</div>
-					<div class="grid_3 dealDescription">
-						<p>Description</p>
-					</div>
-				</div>
-			</div>
-			<!-- SHOWMORE BUTTON -->
-			<div class="grid_2 prefix_14">
-				<div class="showMoreButton">
-					<p>Show more...</p>
-				</div>
-			</div>
-
-			
-			<a id="inline" href="#data">Click me</a>
-			<div style="display:none">
-				<div id="data">
-					Groupon Living Social Fleapy Google Twitter Facebook
 				</div>
 			</div>
 
