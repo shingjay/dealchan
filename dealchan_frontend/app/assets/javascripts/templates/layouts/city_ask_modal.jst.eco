@@ -1,1 +1,24 @@
-<div>Enter a location.</div>
+<div>
+	<style type="text/css">
+		* {
+			text-align: center
+		}
+	</style>
+
+	<div>
+		<p>Please enter a location:</p>
+	</div>
+
+	<select id="location-dropdown">
+		<option value="Kuala Lumpur">Kuala Lumpur</option>
+		<option value="Petaling Jaya">PetalingJaya</option>
+		<option value="Cheras">Cheras</option>
+		<option value="Subang Jaya">Subang Jaya</option>
+		<option value="Bandar Sunway">Bandar Sunway</option>
+	</select>
+
+	<input type="submit" value="submit">
+</div>
+
+
+

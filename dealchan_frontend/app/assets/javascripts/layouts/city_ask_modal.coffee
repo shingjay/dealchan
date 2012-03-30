@@ -5,17 +5,12 @@ class Dealchan.Layouts.CityAskModal
 	this.template = JST["templates/layouts/city_ask_modal"]
 
 	this.fancyboxConfig = {
-		'autoSize'			: false,
-		'width'         	: 450,
-		'height'        	: 220,
-		'openEffect'		: 'none',
-		'closeEffect'		: 'fade',
-		'content'			: @template,
-		'closeBtn'			: false,
-		'closeClick'		: false,
-		'modal'				: true,
-		'padding'			: 0
-
+		content 		: @template
+		minHeight 		: 400
+		minWidth 		: 425
+		scrolling 		: no
+		title			: 'Welcome'
+		openEffect		: 'fade'
 	}
 
 	this.cityAskModal = (element)->
