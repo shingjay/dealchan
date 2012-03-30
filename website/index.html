@@ -7,11 +7,24 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
-		<link rel="stylesheet" href="plugins/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-		<script type="text/javascript" src="plugins/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-		<script type="text/javascript" src="plugins/jquery.cookie.js"></script>
 		<script type="text/javascript" src="javascripts/index.js"></script>
+		
+		<!-- Add jQuery library through content delivery network -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+		<!-- Add jQuery cookie library -->
+		<script type="text/javascript" src="plugins/jquery.cookie.js"></script>
+
+		<!-- Add fancyBox library -->
+		<link rel="stylesheet" href="plugins/fancybox/source/jquery.fancybox.css?v=2.0.5" type="text/css" media="screen" />
+		<script type="text/javascript" src="plugins/fancybox/source/jquery.fancybox.pack.js?v=2.0.5"></script>
+
+		<!-- Optionally add button and/or thumbnail helpers -->
+		<link rel="stylesheet" href="plugins/fancybox/source/helpers/jquery.fancybox-buttons.css?v=2.0.5" type="text/css" media="screen" />
+		<script type="text/javascript" src="plugins/fancybox/source/helpers/jquery.fancybox-buttons.js?v=2.0.5"></script>
+		<link rel="stylesheet" href="plugins/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=2.0.5" type="text/css" media="screen" />
+		<script type="text/javascript" src="plugins/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=2.0.5"></script>
+
 		<title>DealChan</title>
 	</head>
 
@@ -70,6 +83,11 @@
 
 		<!-- MAIN BODY -->
 		<div class="container_16 bottom">
+
+			<!-- FancyBox test -->
+			<a class="fancybox" rel="group" href="images/foodpic2.jpg"><img src="images/foodpic1.jpg" alt="" /></a>
+			<a class="fancybox" rel="group" href="images/foodpic2.jpg"><img src="images/foodpic1.jpg" alt="" /></a>
+
 			<!-- FOOD -->
 			<!-- CONTAINER LABEL -->
 			<div class="grid_2 suffix_14">

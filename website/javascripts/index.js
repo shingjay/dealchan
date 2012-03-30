@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/* $(document).ready(function() {
 
 	$(".deal img").fancybox({
 		'transitionIn'			:	'elastic',
@@ -12,4 +12,8 @@ $(document).ready(function() {
 		'title'					:   'Winning!'
 	});
 	
+}); */
+
+$(document).ready(function() {
+	$(".fancybox").fancybox();
 });
