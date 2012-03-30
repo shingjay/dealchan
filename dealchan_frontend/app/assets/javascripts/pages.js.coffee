@@ -6,6 +6,6 @@ jQuery ->
 	Dealchan.Layouts.CityAskModal.cityAskModal("#city-selection-modal")
 	
 	# Trigger City Selection Modal
-	#$("#city-selection-modal").trigger('click')
+	$("#city-selection-modal").trigger('click')
 
 	Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal img")
