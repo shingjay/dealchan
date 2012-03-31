@@ -6,7 +6,7 @@ class Dealchan.Layouts.CityAskModal
 
 	this.fancyboxConfig = {
 		content 		: @template
-		minHeight 		: 400
+		minHeight 		: 450
 		minWidth 		: 425
 		scrolling 		: no
 		title			: 'Welcome'
@@ -15,3 +15,13 @@ class Dealchan.Layouts.CityAskModal
 
 	this.cityAskModal = (element)->
 		$(element).fancybox( @fancyboxConfig )
+
+###
+	TODO
+	edit the fancybox to have some form of border
+
+	Override somewhere
+	closeBtn:'<div title="Close" class="fancybox-item fancybox-close"></div>'
+	to
+	closeBtn:'<div title="" class="fancybox-item fancybox-close"></div>'
+###
