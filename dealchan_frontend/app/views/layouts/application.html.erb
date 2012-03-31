@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dealchan</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div id="city-selection-modal"></div>
 
-<%= yield %>
+	<head>
+		<title>Dealchan</title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<!-- for website security -->
+		<%= csrf_meta_tags %>
+	</head>
 
-</body>
+	<body>
+		<div id="city-selection-modal"></div>
+		<%= yield %>
+	</body>
+	
 </html>
