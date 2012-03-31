@@ -1,6 +1,6 @@
 DealchanFrontend::Application.routes.draw do
 
-  root :to => 'pages#index'
+  root :to => 'pages#index' # matches root and routes it to the index action in the Pages controller.
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

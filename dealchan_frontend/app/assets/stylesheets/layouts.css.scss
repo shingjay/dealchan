@@ -17,8 +17,7 @@ a, a:link, a:visited, a:active {
 a:hover {
 	text-decoration:		none;
 	color:					#164c76;
-}
-
+}	
 
 
 
@@ -193,11 +192,21 @@ a:hover {
 	text-align: center;
 	height: 20px;
 	width: auto;
+
+	/* round borders */
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px
 }
 
 .dealContainer {
 	padding: 10px 0px 10px 0px;
 	border: solid 1px;
+
+	/* round borders */
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px
 }
 
 .dealPicture {
@@ -239,4 +248,9 @@ a:hover {
 	height: 20px;
 	width: auto;
 	margin-bottom: 25px;
+
+	/* round borders */
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px
 }

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dealchan</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div id="city-selection-modal"></div>
 
-<%= yield %>
+	<head>
+		<title>Dealchan</title>
 
-</body>
+		<!-- partials for stylesheets -->
+		<%= render 'layouts/stylesheets' %>
+		
+		<!-- for website security: just worry about what this does -->
+		<%= csrf_meta_tags %>
+	</head>
+
+	<body>
+		<div id="city-selection-modal"></div>
+
+		<!-- partials for header bar -->
+		<%= render 'layouts/header' %>
+
+		<%= yield %>
+	</body>
+	
 </html>
