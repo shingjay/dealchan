@@ -179,6 +179,11 @@ a:hover {
 
 /* BOTTOM
 ------------------------------------------------------------------*/
+body {
+
+	background:#f3f1f2;
+}
+
 .bottom {
 	margin-top: 100px;
 }
@@ -192,21 +197,15 @@ a:hover {
 	text-align: center;
 	height: 20px;
 	width: auto;
-
-	/* round borders */
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px
 }
 
 .dealContainer {
 	padding: 10px 0px 10px 0px;
-	border: solid 1px;
+	border: solid 1px #888;
 
-	/* round borders */
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
 }
 
 .dealPicture {
@@ -219,7 +218,6 @@ a:hover {
 }
 
 .deal-picture {
-	border: solid 1px #000;
 }
 
 .dealTitle {
@@ -248,9 +246,4 @@ a:hover {
 	height: 20px;
 	width: auto;
 	margin-bottom: 25px;
-
-	/* round borders */
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px
 }
