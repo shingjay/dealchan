@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Dealchan</title>
+
+		<!-- partials for stylesheets -->
+		<%= render 'layouts/stylesheets' %>
+		
+		<!-- for website security: just worry about what this does -->
+		<%= csrf_meta_tags %>
+	</head>
+
+	<body>
+		<div id="city-selection-modal"></div>
+
+		<!-- partials for header bar -->
+		<%= render 'layouts/header' %>
+
+		<%= yield %>
+	</body>
+	
+</html>

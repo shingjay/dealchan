@@ -28,8 +28,6 @@ import java.util.List;
  */
 @Service
 public class GrouponScraperService implements DealSiteService  {
-    
-    public static final String GROUPON_URL = "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur";
 
     @Autowired
     private CustomWebClient webClient;
@@ -37,11 +35,28 @@ public class GrouponScraperService implements DealSiteService  {
     @Autowired
     private GrouponDealRepository grouponDealRepository;
 
-    public List<GrouponDeal> scrap() throws FeedException {
+
+    public List<GrouponDeal> scrapAll() throws FeedException {
+        String [] grouponURLs = {
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah"
+            //http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/travelcity"
+        };
+        List<GrouponDeal> deals = new ArrayList<GrouponDeal>();
+        for (int i = 0 ; i < grouponURLs.length ; i++) {
+            deals.addAll((List<GrouponDeal>)scrap(grouponURLs[i]));
+        }
+        return deals;
+    }
+
+    public List<GrouponDeal> scrap(String url) throws FeedException {
 
         ArrayList<GrouponDeal> grouponDealList = new ArrayList<GrouponDeal>();
 
-        Document doc = webClient.getPageAsXml(GROUPON_URL);
+        Document doc = webClient.getPageAsXml(url);
 
         SyndFeedInput syndFeedInput = new SyndFeedInput();
         SyndFeed feed = syndFeedInput.build(doc);
@@ -51,11 +66,13 @@ public class GrouponScraperService implements DealSiteService  {
 
             GrouponDeal deal = new GrouponDeal();
             deal.setDescription(f.getDescription().getValue());
-            System.out.println(deal.getDescription());
+            //System.out.println(deal.getDescription());
             deal.setLink(f.getLink());
             deal.setPubDate(f.getPublishedDate());
             deal.setTitle(f.getTitle());
 
+            System.out.println("deal link : " + deal.getLink());
+            
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
 
@@ -100,7 +117,7 @@ public class GrouponScraperService implements DealSiteService  {
             //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
             deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
 
-            deal = grouponDealRepository.save(deal);
+//            deal = grouponDealRepository.save(deal);
             grouponDealList.add(deal);
         }
 
@@ -110,7 +127,7 @@ public class GrouponScraperService implements DealSiteService  {
     @Override
     public List getDealsOfTheDay() {
         try {
-            return scrap();  //To change body of implemented methods use File | Settings | File Templates.
+            return scrapAll();  //To change body of implemented methods use File | Settings | File Templates.
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -118,13 +135,10 @@ public class GrouponScraperService implements DealSiteService  {
     }
 
     public static void main(String args[]) throws FeedException {
-
-
-
         CustomWebClient client = new CustomWebClientImpl();
         GrouponScraperService scraperService = new GrouponScraperService();
         scraperService.webClient = client;
-        scraperService.scrap();
+        scraperService.scrapAll();
 
     }
 

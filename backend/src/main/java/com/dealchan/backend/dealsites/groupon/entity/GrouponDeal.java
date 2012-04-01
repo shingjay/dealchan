@@ -19,6 +19,8 @@ public class GrouponDeal {
     private long id;
 
     private String title;
+
+    @Lob
     private String link;
 
     @Lob

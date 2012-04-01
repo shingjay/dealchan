@@ -17,6 +17,8 @@ public class AdapterConfig {
     @Bean
     public DealSourceAdapterImpl dealSourceAdapter() {
         DealSourceAdapterImpl adapter = new DealSourceAdapterImpl();
+        
+
         return adapter;
     }
 }

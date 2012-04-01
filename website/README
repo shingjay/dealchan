@@ -1,0 +1,17 @@
+/css
+	Contains 960 Grid System CSS Framework.
+
+/images
+	Contains image files.
+
+/javascripts
+	Contains javascripts.
+
+/plugins
+	Contains jQuery, JS, CoffeeScript libraries and frameworks.
+
+/styles
+	Contains CSS stylesheets.
+
+index.html
+	Main webpage.

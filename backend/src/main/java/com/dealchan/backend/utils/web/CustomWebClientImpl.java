@@ -1,9 +1,6 @@
 package com.dealchan.backend.utils.web;
 
-import com.gargoylesoftware.htmlunit.DefaultCredentialsProvider;
-import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
-import com.gargoylesoftware.htmlunit.Page;
-import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.xml.XmlPage;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -37,11 +34,12 @@ public class CustomWebClientImpl implements CustomWebClient {
 
     private void initWebClient() {
         try {
-            webClient = new WebClient();
+            webClient = new WebClient(BrowserVersion.FIREFOX_3_6);
             webClient.setUseInsecureSSL(true);
             webClient.setJavaScriptEnabled(true);
             webClient.setAjaxController(new NicelyResynchronizingAjaxController());
             webClient.setThrowExceptionOnScriptError(false);
+            webClient.setThrowExceptionOnFailingStatusCode(false);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -79,7 +77,13 @@ public class CustomWebClientImpl implements CustomWebClient {
 
     public Page getPage( String url ) {
         try {
-            return webClient.getPage(url);
+            //System.out.println(url);
+            Page page = webClient.getPage(url);
+
+            if(page.getWebResponse().getStatusCode() >= 400) {
+                throw new FailingHttpStatusCodeException(page.getWebResponse());
+            }
+            return page;
         } catch (Exception ex ) {
             throw new RuntimeException(ex);
         }
