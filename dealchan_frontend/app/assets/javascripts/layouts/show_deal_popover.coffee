@@ -6,8 +6,8 @@ class Dealchan.Layouts.ShowDealPopover
 
 	this.fancyboxConfig = {
 		content 		: @template
-		minHeight 		: 400
-		minWidth 		: 425
+		maxHeight 		: 800
+		maxWidth 		: 800
 		scrolling 		: no
 		title			: 'Deal Information'
 		openEffect		: 'elastic'

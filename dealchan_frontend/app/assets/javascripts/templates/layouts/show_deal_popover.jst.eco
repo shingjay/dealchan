@@ -1,1 +1,118 @@
-<img src="assets/winning.jpg">
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, Geneva, sans-serif;
+	font-size: 16px;
+}
+
+.deal-modal-dialog > div {
+	border: 1px solid #888;
+	margin: 10px;
+}
+
+#deal-title {
+	width: auto;
+	text-align: center;
+	height: 60px;
+	font-size: 30px;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+#level_2 {
+	height: 300px;
+	border: none;
+}
+
+#deal-pic {
+	height: 300px;
+	width: 400px;
+	float: left;
+	border: 1px solid;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+#deal-pic img {			/* stretch the deal picture image */
+	width: 100%;
+	height: 100%;
+}
+
+#deal-loc {
+	height: 300px;
+	width: 300px;
+	float: right;
+	border: 1px solid;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+.deal-navbar {
+	height: 80px;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+.deal-desc {
+	height: 250px;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+#deal-desc-text {
+	margin: 5px;
+}
+
+#deal-desc-text p {
+	text-align: left;
+}
+
+</style>
+
+
+<div class="deal-modal-dialog">
+
+	<div id="deal-title">
+		Deal title goes here
+	</div>
+
+	<div id="level_2">
+		<span id="deal-pic">
+			<img src="assets/foodpic1.jpg">
+		</span>
+		<span id="deal-loc">
+			<img src="assets/deal_loc1.png">
+		</span>
+	</div>
+
+	<div class="deal-navbar">
+		Buttons goes here
+	</div>
+
+	<div class="deal-desc">
+		<div id="deal-desc-text">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in magna felis, non facilisis nisl. Sed erat elit, condimentum commodo adipiscing non, consequat ut risus. Nulla at cursus elit. Fusce lacus eros, fermentum ut luctus sed, ornare vitae nulla. Pellentesque quam magna, vulputate sit amet iaculis eu, dictum vel magna. Proin condimentum lacinia ante a fringilla. Nunc eleifend urna quis augue viverra eu porttitor leo feugiat.
+			</p>
+
+			<br />
+
+			<p>
+				Proin consectetur sagittis gravida. Praesent mattis nibh sed augue convallis ultricies. Donec id nisi nisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin auctor imperdiet tellus eget semper. Cras eu sapien lorem, eget posuere eros. Aenean semper venenatis turpis, dignissim rhoncus risus dapibus vitae. Mauris sed semper nunc. Phasellus faucibus egestas nulla nec sagittis. Vivamus congue venenatis nisi a varius. Pellentesque fringilla, ligula non cursus vehicula, magna tellus tincidunt metus, a semper enim massa in nibh. Integer non tempus sem. Maecenas eu pellentesque lectus.
+			</p>
+		</div>
+	</div>
+
+</div>
