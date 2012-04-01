@@ -2,7 +2,7 @@ import pymysql
 import os
 import re
 import nltk
-from corpus import getStopwordsCorpus()
+from corpus import getStopwordsCorpus
 
 text_path = '/home/yingzhe/Desktop/seniordesign/datatext'
 

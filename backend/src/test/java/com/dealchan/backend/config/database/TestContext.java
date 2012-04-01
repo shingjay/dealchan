@@ -16,4 +16,5 @@ import org.springframework.context.annotation.Import;
 @ComponentScan(basePackages = "com.dealchan.backend", excludeFilters = @ComponentScan.Filter(value = Configuration.class, type = FilterType.ANNOTATION) )
 @Import(value = {DatabaseConfig.class, YingZheDatabaseConfig.class, AnbinDatabaseConfig.class,DevDatabaseConfig.class})
 public class TestContext {
+
 }

@@ -15,7 +15,9 @@ public class CrawlerConfig {
 
     @Bean
     public CustomWebClient getClient() {
-        return new CustomWebClientImpl();
+        CustomWebClient customWebClient = new CustomWebClientImpl();
+        customWebClient.getWebClient().setThrowExceptionOnScriptError(false);
+        return customWebClient;
     }
 
 }
