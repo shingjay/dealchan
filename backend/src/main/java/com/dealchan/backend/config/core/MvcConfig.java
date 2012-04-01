@@ -1,7 +1,6 @@
 package com.dealchan.backend.config.core;
 
 import com.dealchan.backend.ComponentScanMarker;
-import com.dealchan.backend.utils.web.CustomWebClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -41,10 +40,5 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
         return resolver;
-    }
-
-    @Bean
-    public CustomWebClientImpl webClient() {
-        return new CustomWebClientImpl();
     }
 }
