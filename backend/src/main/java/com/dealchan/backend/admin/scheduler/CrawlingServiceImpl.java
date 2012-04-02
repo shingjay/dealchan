@@ -5,6 +5,7 @@ import com.dealchan.backend.dealsource.adapter.DealSourceAdapter;
 import com.dealchan.backend.dealsource.entity.DealSource;
 import com.dealchan.backend.dealsource.repository.DealSourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ import java.util.List;
  * Time: 1:10 AM
  * To change this template use File | Settings | File Templates.
  */
-
-public class CrawlingServiceImpl implements CrawlingService{
+@Service
+public class CrawlingServiceImpl implements CrawlingService {
     
     @Autowired
     private DealSourceAdapter adapter;
     
-
+    @Autowired
     private List<DealSiteService> dealSiteServiceList;
     
     @Autowired
@@ -39,15 +40,11 @@ public class CrawlingServiceImpl implements CrawlingService{
     public CrawlingServiceImpl() {
         activeThreads = new HashMap<Class, Thread>();
     }
-
-    @Autowired
-    public void setDealSiteServiceList(List<DealSiteService> dealSiteServiceList ) {
-        crawlerStatusList = new ArrayList<CrawlerStatus>();
-        this.dealSiteServiceList = dealSiteServiceList;
-    }
     
     @Override
     public void crawl() {
+
+        System.out.println("TIU NI MA KIDDING ME?");
         
         // make sure no running threads are present
         for (Thread thread : activeThreads.values()) {
@@ -61,6 +58,7 @@ public class CrawlingServiceImpl implements CrawlingService{
         for(DealSiteService service: dealSiteServiceList) {
             Task task = new Task(service, dealSourceRepository, adapter);
             Thread thread = new Thread(task);
+            thread.setDaemon(true);
             thread.start();
 
             activeThreads.put(service.getClass(), thread);
@@ -104,6 +102,9 @@ public class CrawlingServiceImpl implements CrawlingService{
         }
         
         public void run() {
+            
+            System.out.println("TASKING KIDDING ME?");
+            
             Collection<DealSource> dailyDealSources = adapter.convert(dealSiteService.getDealsOfTheDay());
 
             synchronized (dealSourceRepository) {
