@@ -132,6 +132,7 @@ public class GrouponScraperService implements DealSiteService  {
 
     @Override
     public List getDealsOfTheDay() {
+        System.out.println("FUCK YEA!");
         try {
             return scrapAll();  //To change body of implemented methods use File | Settings | File Templates.
         } catch (Exception ex) {

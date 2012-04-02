@@ -37,8 +37,10 @@ public class GrouponTest {
     @Test
     public void testGrouponJob() throws Exception
     {
-        Scheduler scheduler = schedulerFactoryBean.getScheduler();
-        scheduler.start();
+//        Scheduler scheduler = schedulerFactoryBean.getScheduler();
+//        scheduler.start();
         //scheduler.scheduleJob(methodInvokingJobDetailFactoryBean.getObject(), simpleTriggerBean);
+
+        Thread.currentThread().sleep(20000);
     }
 }
