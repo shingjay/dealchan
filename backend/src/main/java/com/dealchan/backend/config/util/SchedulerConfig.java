@@ -5,9 +5,11 @@ import org.quartz.JobDetail;
 import org.quartz.Trigger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.quartz.CronTriggerBean;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.scheduling.quartz.SimpleTriggerBean;
+
+import java.text.ParseException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -35,22 +37,30 @@ public class SchedulerConfig {
     }
 
     @Bean
-    public SimpleTriggerBean simpleTriggerBean()
+    public CronTriggerBean cronTriggerBean() throws ParseException
     {
-        SimpleTriggerBean simpleTriggerBean = new SimpleTriggerBean();
-        simpleTriggerBean.setJobDetail(methodInvokingJobDetailFactoryBean().getObject());
-        simpleTriggerBean.setStartDelay(10000);
-        simpleTriggerBean.setRepeatInterval(300000);
-        return simpleTriggerBean;
+        CronTriggerBean cronTriggerBean = new CronTriggerBean();
+        cronTriggerBean.setJobDetail(methodInvokingJobDetailFactoryBean().getObject());
+        cronTriggerBean.setStartDelay(10000);
+        cronTriggerBean.setCronExpression("0 0 0 1/1 * ? *");   //cron expression: runs everyday at 12am. Ref: http://www.cronmaker.com
+        return cronTriggerBean;
     }
 
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean()
     {
-        SimpleTriggerBean simpleTriggerBean = simpleTriggerBean();
-        SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
-        schedulerFactoryBean.setJobDetails(new JobDetail[] {simpleTriggerBean.getJobDetail()});
-        schedulerFactoryBean.setTriggers(new Trigger[]{simpleTriggerBean});
-        return schedulerFactoryBean;
+        try
+        {
+            CronTriggerBean cronTriggerBean = cronTriggerBean();
+            SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
+            schedulerFactoryBean.setJobDetails(new JobDetail[] {cronTriggerBean.getJobDetail()});
+            schedulerFactoryBean.setTriggers(new Trigger[]{cronTriggerBean});
+            return schedulerFactoryBean;
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
