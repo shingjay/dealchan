@@ -19,7 +19,7 @@ public class AnbinDatabaseConfig {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource source = new DriverManagerDataSource();
-        source.setUrl("jdbc:mysql://localhost:8889/Test");
+        source.setUrl("jdbc:mysql://localhost:8889/senior_design");
         source.setUsername("root");
         source.setPassword("root");
         source.setDriverClassName("com.mysql.jdbc.Driver");
