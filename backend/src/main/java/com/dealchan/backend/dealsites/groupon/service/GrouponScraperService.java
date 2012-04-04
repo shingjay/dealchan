@@ -38,11 +38,11 @@ public class GrouponScraperService implements DealSiteService  {
 
     public List<GrouponDeal> scrapAll() throws FeedException {
         String [] grouponURLs = {
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah"
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor"
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah"
             //http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/travelcity"
         };
         List<GrouponDeal> deals = new ArrayList<GrouponDeal>();
