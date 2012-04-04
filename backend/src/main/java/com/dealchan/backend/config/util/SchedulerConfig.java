@@ -1,9 +1,8 @@
 package com.dealchan.backend.config.util;
 
-import com.dealchan.backend.admin.scheduler.CrawlingService;
+import com.dealchan.backend.dealsites.groupon.service.GrouponScraperService;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerBean;
@@ -22,15 +21,18 @@ import java.text.ParseException;
 @Configuration
 public class SchedulerConfig {
     
-    @Autowired
-    private CrawlingService crawlingService;
+    @Bean
+    public GrouponScraperService grouponScraperService()
+    {
+        return new GrouponScraperService();
+    }
 
     @Bean
     public MethodInvokingJobDetailFactoryBean methodInvokingJobDetailFactoryBean() {
         MethodInvokingJobDetailFactoryBean factoryBean = new MethodInvokingJobDetailFactoryBean();
         factoryBean.setConcurrent(false);
-        factoryBean.setTargetObject(crawlingService);
-        factoryBean.setTargetMethod("crawl");
+        factoryBean.setTargetObject(grouponScraperService());
+        factoryBean.setTargetMethod("getDealsOfTheDay");
         return factoryBean;
     }
 

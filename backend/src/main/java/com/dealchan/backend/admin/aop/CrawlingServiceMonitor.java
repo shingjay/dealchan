@@ -8,7 +8,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.aop.TargetClassAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -63,10 +62,7 @@ public class CrawlingServiceMonitor {
 
         for(DealSiteService dealSiteService : dealSiteServiceList) {
             CrawlerStatus crawlerStatus = new CrawlerStatus();
-
-            TargetClassAware aware = (TargetClassAware) dealSiteService;
-
-            crawlerStatus.setName(aware.getTargetClass().getName());
+            crawlerStatus.setName(dealSiteService.getClass().getSimpleName());
             crawlerStatus.setService(dealSiteService);
             crawlerStatus.setStatus(CrawlerStatus.Status.IDLE);
             crawlerStatusHashMap.put(dealSiteService.getClass(), crawlerStatus);
