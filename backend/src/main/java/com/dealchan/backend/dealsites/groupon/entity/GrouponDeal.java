@@ -38,6 +38,7 @@ public class GrouponDeal {
     private boolean active;
     private int bought;
     private String image;
+    private String address;
 
     public long getId() {
         return id;
@@ -70,6 +71,7 @@ public class GrouponDeal {
         if (pubDate != null ? !pubDate.equals(that.pubDate) : that.pubDate != null) return false;
         if (timeEnds != null ? !timeEnds.equals(that.timeEnds) : that.timeEnds != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
         return true;
     }
@@ -211,7 +213,15 @@ public class GrouponDeal {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
     @Override
     public String toString() {
         return "GrouponDeal{" +

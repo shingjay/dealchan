@@ -82,6 +82,8 @@ public class GrouponScraperService implements DealSiteService  {
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
 
+            deal.setAddress(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div/h2").get(0))).asText());
+
             //xpath of city: /html/body/div/div[8]/div/a/span/span
             deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
             //xpath of currentPrice: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span
