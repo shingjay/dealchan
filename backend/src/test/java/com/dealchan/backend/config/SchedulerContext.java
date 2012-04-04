@@ -4,6 +4,7 @@ import com.dealchan.backend.config.database.AnbinDatabaseConfig;
 import com.dealchan.backend.config.database.DatabaseConfig;
 import com.dealchan.backend.config.database.DevDatabaseConfig;
 import com.dealchan.backend.config.database.YingZheDatabaseConfig;
+import com.dealchan.backend.config.util.AdapterConfig;
 import com.dealchan.backend.config.util.SchedulerConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,11 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @ComponentScan(basePackages = "com.dealchan.backend", excludeFilters = @ComponentScan.Filter(value = Configuration.class, type = FilterType.ANNOTATION) )
-@Import(value = {DatabaseConfig.class, YingZheDatabaseConfig.class, AnbinDatabaseConfig.class,DevDatabaseConfig.class, SchedulerConfig.class})
+@Import(value = {DatabaseConfig.class,
+        YingZheDatabaseConfig.class,
+        AnbinDatabaseConfig.class,
+        DevDatabaseConfig.class,
+        SchedulerConfig.class,
+        AdapterConfig.class})
 public class SchedulerContext {
 }

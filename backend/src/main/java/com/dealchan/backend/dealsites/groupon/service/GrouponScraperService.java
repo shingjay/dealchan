@@ -82,7 +82,18 @@ public class GrouponScraperService implements DealSiteService  {
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
 
-            deal.setAddress(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div/h2").get(0))).asText());
+            HtmlElement element = (HtmlElement) htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div").get(0);
+
+            Iterable<HtmlElement> elements = element.getChildElements();
+
+
+
+            for(HtmlElement e : elements) {
+//                System.out.println("FUCK : " + e.asText());
+                element.removeChild(e);
+            }
+
+            deal.setAddress(element.asText());
 
             //xpath of city: /html/body/div/div[8]/div/a/span/span
             deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);

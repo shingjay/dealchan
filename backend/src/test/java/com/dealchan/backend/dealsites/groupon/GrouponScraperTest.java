@@ -1,7 +1,7 @@
 package com.dealchan.backend.dealsites.groupon;
 
 import com.dealchan.backend.config.ProfileConstant;
-import com.dealchan.backend.config.database.TestContext;
+import com.dealchan.backend.config.SchedulerContext;
 import com.dealchan.backend.dealsites.groupon.entity.GrouponDeal;
 import com.dealchan.backend.dealsites.groupon.service.GrouponScraperService;
 import com.dealchan.backend.utils.web.CustomWebClient;
@@ -20,7 +20,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -32,8 +31,8 @@ import java.util.List;
 * To change this template use File | Settings | File Templates.
 */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(profiles = ProfileConstant.YINGZHE_PROFILE)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {TestContext.class})
+@ActiveProfiles(profiles = ProfileConstant.ANBIN_PROFILE)
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {SchedulerContext.class})
 public class GrouponScraperTest {
 
     @Autowired
