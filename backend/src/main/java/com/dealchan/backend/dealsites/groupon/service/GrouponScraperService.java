@@ -75,6 +75,8 @@ public class GrouponScraperService implements DealSiteService  {
             //System.out.println(deal.getDescription());
             deal.setLink(f.getLink());
             deal.setPubDate(f.getPublishedDate());
+            System.out.println("date: " + f.getPublishedDate());
+
             deal.setTitle(f.getTitle());
 
             System.out.println("deal link : " + deal.getLink());
