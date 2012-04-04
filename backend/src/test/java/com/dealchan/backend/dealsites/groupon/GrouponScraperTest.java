@@ -168,18 +168,9 @@ public class GrouponScraperTest {
             
             String description = deal.getDescription();
             String clean = Jsoup.parse(description).text();
-           /*
+            
             System.out.println("description : " + clean);
-            System.out.println("discount : " + deal.getDiscount());
-            System.out.println("city : " + deal.getCity());
-            System.out.println("time ends : " + deal.getTimeEnds());
-            System.out.println("current price : " + deal.getCurrentPrice());
-            System.out.println("published date : " + deal.getPubDate());
-            System.out.println("link : " + deal.getLink());
-            System.out.println("saving : " + deal.getSaving());
-            System.out.println("extra info : " + deal.getExtraInformation());
-            System.out.println();
-                           */
+            
             if(description == null || description.equals("") || description.isEmpty()) {
                 Assert.fail("Shit happened");
             }
