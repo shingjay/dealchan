@@ -11,6 +11,7 @@ class Dealchan.Layouts.CityAskModal
 		scrolling 		: no
 		title			: 'Welcome'
 		openEffect		: 'fade'
+		closeBtn		: false
 	}
 
 	this.cityAskModal = (element)->

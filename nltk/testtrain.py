@@ -9,22 +9,28 @@ import nltk
 import os
 from classification import *
 
-nltk.classify.megam.config_megam('/home/yingzhe/Desktop/seniordesign/megam_i686.opt')
+nltk.classify.megam.config_megam('/home/yingzhe/Projects/seniordesign/megam_i686.opt')
+classifier_fname = 'classifier.pkl'
+classifier_zname = 'classifier.pkl.gz'
 # Save Classifier
-def SaveClassifier( classifier):
-	fModel = open('classifier.pkl',"wb")
+def SaveClassifier(classifier):
+	fModel = open(classifier_fname,"wb")
 	pickle.dump(classifier, fModel,1)
 	fModel.close()
-	os.system("rm classifier.pkl.gz")
-	os.system("gzip classifier.pkl")
+	if os.path.exists(classifier_zname):
+		os.system("rm " + classifier_zname)
+	os.system("gzip " + classifier_fname)
 
 # Load Classifier    
 def LoadClassifier():
-	os.system("gunzip classifier.pkl.gz")
-	fModel = open('classifier.pkl',"rb")
+	if not os.path.exists(classifier_zname):
+		print 'Classifier does not exist'
+		return None
+	os.system("gunzip " + classifier_zname)
+	fModel = open(classifier_fname,"rb")
 	classifier = pickle.load(fModel)
 	fModel.close()
-	os.system("gzip classifier.pkl")
+	os.system("gzip " + classifier_fname)
 	return classifier
 
 def corpus_high_info_words(corpus, score_fn=BigramAssocMeasures.chi_sq):
@@ -47,15 +53,20 @@ def corpus_train_test_feats(corpus, feature_detector=bag_of_words):
 		featlist.append((feats, labels))
 	return train_feats, test_feats
 
-if __name__ == "__main__":
-	c = getDealsCorpus()
-	hiwords = corpus_high_info_words(c)
-	featdet = lambda words: bag_of_words_in_set(words, hiwords)
-	train_feats, test_feats = corpus_train_test_feats(c, featdet)
-	trainf = lambda train_feats: MaxentClassifier.train(train_feats, algorithm='megam', trace=0, max_iter=10)
-	labelset = set(c.categories())
-	classifiers = train_binary_classifiers(trainf, train_feats, labelset)
-	multi_classifier = MultiBinaryClassifier(*classifiers.items())
-	multi_p, multi_r, avg_md = multi_metrics(multi_classifier, test_feats)
-	print multi_p['activitiesevents'], multi_r['activitiesevents'], avg_md
+def trainCorpus():
+	if os.path.exists(classifier_zname):
+		return LoadClassifier()
+	else:
+		c = getDealsCorpus()
+		hiwords = corpus_high_info_words(c)
+		featdet = lambda words: bag_of_words_in_set(words, hiwords)
+		train_feats, test_feats = corpus_train_test_feats(c, featdet)
+		trainf = lambda train_feats: MaxentClassifier.train(train_feats, algorithm='megam', trace=0, max_iter=10)
+		labelset = set(c.categories())
+		classifiers = train_binary_classifiers(trainf, train_feats, labelset)
+		multi_classifier = MultiBinaryClassifier(*classifiers.items())
+		multi_p, multi_r, avg_md = multi_metrics(multi_classifier, test_feats)
+		print multi_p['activitiesevents'], multi_r['activitiesevents'], avg_md
+		SaveClassifier(multi_classifier)
+		return multi_classifier
 

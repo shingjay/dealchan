@@ -14,8 +14,10 @@ import org.springframework.context.annotation.Bean;
 public class CrawlerConfig {
 
     @Bean
-    public CustomWebClient getClient() {
-        return new CustomWebClientImpl();
+    public CustomWebClient webClient() {
+        CustomWebClient customWebClient = new CustomWebClientImpl();
+        customWebClient.getWebClient().setThrowExceptionOnScriptError(false);
+        return customWebClient;
     }
 
 }

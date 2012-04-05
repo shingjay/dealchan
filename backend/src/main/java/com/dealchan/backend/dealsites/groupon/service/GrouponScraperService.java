@@ -38,11 +38,11 @@ public class GrouponScraperService implements DealSiteService  {
 
     public List<GrouponDeal> scrapAll() throws FeedException {
         String [] grouponURLs = {
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah"
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor"
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
+            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah"
             //http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/travelcity"
         };
         List<GrouponDeal> deals = new ArrayList<GrouponDeal>();
@@ -61,8 +61,14 @@ public class GrouponScraperService implements DealSiteService  {
         SyndFeedInput syndFeedInput = new SyndFeedInput();
         SyndFeed feed = syndFeedInput.build(doc);
         List<SyndEntry> feedList = feed.getEntries();
+
+        //test quartz
+        int i = 0;
         
         for(SyndEntry f : feedList) {
+            //test quartz
+            if (i == 3) break;
+            i++;
 
             GrouponDeal deal = new GrouponDeal();
             deal.setDescription(f.getDescription().getValue());
@@ -75,6 +81,19 @@ public class GrouponScraperService implements DealSiteService  {
             
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
+
+            HtmlElement element = (HtmlElement) htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div").get(0);
+
+            Iterable<HtmlElement> elements = element.getChildElements();
+
+
+
+            for(HtmlElement e : elements) {
+//                System.out.println("FUCK : " + e.asText());
+                element.removeChild(e);
+            }
+
+            deal.setAddress(element.asText());
 
             //xpath of city: /html/body/div/div[8]/div/a/span/span
             deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
@@ -117,7 +136,7 @@ public class GrouponScraperService implements DealSiteService  {
             //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
             deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
 
-//            deal = grouponDealRepository.save(deal);
+            deal = grouponDealRepository.save(deal);
             grouponDealList.add(deal);
         }
 
@@ -126,6 +145,7 @@ public class GrouponScraperService implements DealSiteService  {
 
     @Override
     public List getDealsOfTheDay() {
+        System.out.println("FUCK YEA!");
         try {
             return scrapAll();  //To change body of implemented methods use File | Settings | File Templates.
         } catch (Exception ex) {
