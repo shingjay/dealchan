@@ -1,0 +1,36 @@
+{
+"deals":[
+	{
+		"id":1,
+		"title":"[Up to 60% Off] 6-Course Authentic Indian Meal at GEM Restaurant. Meal for 2 (RM40) / 4 (RM75) People. From RM18.75 per person. Pork-free",
+		"price":18.75,
+		"discount":60,
+		"original_price":40,
+		"description":"Cultures can best be identified by their food, costumes and ability to kill bad bacteria. Today’s Groupon invokes spicy solidarity with a six-course authentic Indian meal, inclusive of 10% service charge (up to RM16.88 value) at GEM Restaurant, valid at two outlets in the Klang Valley. Choose from:",
+		"time-left":300,
+		"latitude":200,
+		"longitude":250,
+		"address":"No. 52-53, 1st Floor, Lot 16710-16711, Lorong Song 4, Tabuan Height Commercial Centre Kuching, Sarawak 93300 Company Website",
+		"image":"",
+		"category":"food",
+		"city":"Kuala Lumpur",
+		"country":"Malaysia"
+	},
+	{
+		"id":2,
+		"title":"[Up to 91% Off] 2-Hr Hydro Facial + Eye & Neck Treatment + Shoulder Massage. Choose 1 (RM25) / 2 (RM45) / 3 (RM55) Visits. From RM18.30 per visit. Uses Cosmecnique Products from France",
+		"price":18.75,
+		"discount":60,
+		"original_price":40,
+		"description":"Cultures can best be identified by their food, costumes and ability to kill bad bacteria. Today’s Groupon invokes spicy solidarity with a six-course authentic Indian meal, inclusive of 10% service charge (up to RM16.88 value) at GEM Restaurant, valid at two outlets in the Klang Valley. Choose from:",
+		"time-left":300,
+		"latitude":200,
+		"longitude":250,
+		"address":"No. 52-53, 1st Floor, Lot 16710-16711, Lorong Song 4, Tabuan Height Commercial Centre Kuching, Sarawak 93300 Company Website",
+		"image":"",
+		"category":"food",
+		"city":"Kuala Lumpur",
+		"country":"Malaysia"
+	}
+]
+}
