@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   	protect_from_forgery
+
+  	# executes load_categories method before any 'linkage' to PagesController
   	before_filter :load_categories
 
   	private
@@ -11,6 +13,5 @@ class ApplicationController < ActionController::Base
 							"Travel",
 							"Shopping"]
 	end
-
 
 end

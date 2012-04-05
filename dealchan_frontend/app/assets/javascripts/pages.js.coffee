@@ -19,10 +19,11 @@ jQuery ->
 						"Travel",
 						"Shopping"]
 
+	# Dynamically attach event handlers to click events
 	for category_id in deal_categories
 		$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
 			Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), 'http://...'
 		$("#jump-to-#{category_id}").on 'click', { cat : category_id }, (event)->
-			$('body').animate {
+			$('html,body').animate {
 				scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
 			}, 600

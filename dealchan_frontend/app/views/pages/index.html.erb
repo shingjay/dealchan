@@ -1,14 +1,11 @@
 <!-- MAIN BODY -->
 <div class="container_16 bottom">
 
+	<!-- dynamically render a deal container partial for each array item -->
 	<% @deal_categories.each do |category| %>
 
-		<!-- partials for container -->
-		<!-- FOOD -->
 		<%= render :partial => 'dealcontainer', :locals => {:category_id => category} %>
 
-
 	<% end %>
-
 
 </div>

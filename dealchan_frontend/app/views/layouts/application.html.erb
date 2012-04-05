@@ -7,7 +7,7 @@
 		<!-- partials for stylesheets -->
 		<%= render 'layouts/stylesheets' %>
 		
-		<!-- for website security: just worry about what this does -->
+		<!-- for website security: dont worry about what this does (cross site request forgery) -->
 		<%= csrf_meta_tags %>
 	</head>
 
@@ -23,7 +23,6 @@
 				<% end %>
 			</ul>
 		</div>
-
 
 		<!-- partials for header bar -->
 		<%= render 'layouts/header' %>
