@@ -14,3 +14,10 @@ jQuery ->
 	## ShowMore Button Click
 	$("#showMore-Food").click ()->
 		Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-Food"), 'http://...'
+
+
+	## JumpTo
+	$("#jump-to-events").click ()->
+		$('html,body').animate({
+            scrollTop: $('#dealContainer-Events').offset().top - 120},
+		300)
