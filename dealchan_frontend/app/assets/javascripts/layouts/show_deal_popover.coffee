@@ -14,4 +14,5 @@ class Dealchan.Layouts.ShowDealPopover
 	}
 
 	this.showDealPopover = (element)->
+
 		$(element).fancybox( @fancyboxConfig )

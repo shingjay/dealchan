@@ -12,12 +12,17 @@ jQuery ->
 
 
 	## ShowMore Button Click
-	$("#showMore-Food").click ()->
-		Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-Food"), 'http://...'
+	# Manual work 
+	deal_categories = ["Food",
+						"Fitness",
+						"Events",
+						"Travel",
+						"Shopping"]
 
-
-	## JumpTo
-	$("#jump-to-events").click ()->
-		$('html,body').animate({
-            scrollTop: $('#dealContainer-Events').offset().top - 120},
-		300)
+	for category_id in deal_categories
+		$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
+			Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), 'http://...'
+		$("#jump-to-#{category_id}").on 'click', { cat : category_id }, (event)->
+			$('body').animate {
+				scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
+			}, 600

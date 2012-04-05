@@ -16,8 +16,11 @@
 
 		<div id="jump-to-shortcut" style="top:100px;position:fixed">
 			<ul>
-				<li>Food</li>
-				<li><a href='#' id="jump-to-events">Events</a></li>
+				<% @deal_categories.each do |category| %>
+					<li>
+						<a href="#" id="jump-to-<%= category %>"><%= category %></a>
+					</li>
+				<% end %>
 			</ul>
 		</div>
 
