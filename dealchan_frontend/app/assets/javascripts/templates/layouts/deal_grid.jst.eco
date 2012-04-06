@@ -1,9 +1,9 @@
 <div class="grid_3 deal">
 	<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
 	<div class="grid_3 dealTitle">
-		<p><%= @deal_title %></p>
+		<p><%= @title %></p>
 	</div>
 	<div class="grid_3 dealDescription">
-		<p><%= @deal_desc %></p>
+		<p><%= @description %></p>
 	</div>
 </div>
