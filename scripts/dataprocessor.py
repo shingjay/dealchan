@@ -26,30 +26,31 @@ def processDatabase():
 	cur.execute('SELECT * FROM ' + raw_table)
 
 	'''
-	Index	Field name	Data type
-	0	id		bigint(20)
-	1	active		tinyint(1)
-	2	bought		int(11)
-	3	city		varchar(255)
-	4	currentPrice	double
-	5	description	longtext
-	6	discount	double
-	7	extraInfo	varchar(255)
-	8	image		varchar(255)
-	9	link		varchar(255)
-	10	origPrice	double
-	11	pubDate		datetime
-	12	saving		double
-	13	timeEnds	datetime
-	14	title		varchar(255)
-	15	address		varchar(255)
-	*16	latitude	double
-	*17	longitude	double
-	*18	category	varchar(255)
+	Index	Field name		Data type
+	0	id			bigint(20)
+	1	active			tinyint(1)
+	2	bought			int(11)
+	3	city			varchar(255)
+	4	currentPrice		double
+	5	description		longtext
+	6	discount		double
+	7	extraInformation	varchar(255)
+	8	image			varchar(255)
+	9	link			varchar(255)
+	10	originalPrice		double
+	11	pubDate			datetime
+	12	saving			double
+	13	timeEnds		datetime
+	14	title			varchar(255)
+	15	address			varchar(255)
+	*16	latitude		double
+	*17	longitude		double
+	*18	category		varchar(255)
 
 	* - only in live/filtered DB
 	'''
 	for c in cur:
+		cur2 = conn.cursor()
 		cat_set = classifier.classify(featx.bag_of_words(c[14].split()))
 		if len(cat_set) == 0:
 			category = 'Miscellaneous'
@@ -76,6 +77,9 @@ def processDatabase():
 		else:
 			latitude = 360.0
 			longitude = 360.0
+		db_entry = [c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8],c[9], c[10], c[11], c[12], c[13], c[14], c[15], latitude, longitude, category]
+		cur2.execute("INSERT INTO " + filtered_table + " (active, bought, city, currentPrice, description, discount, extraInformation, image, link, originalPrice, pubDate, saving, timeEnds, title, address, latitude, longitude, category) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", db_entry)
+		cur2.close()
 	cur.close()
 
 	''' cur.execute("INSERT INTO GrouponDealLive (active, bought, city, currentPrice,
