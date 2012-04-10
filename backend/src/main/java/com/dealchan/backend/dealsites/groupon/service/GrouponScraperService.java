@@ -38,12 +38,12 @@ public class GrouponScraperService implements DealSiteService  {
 
     public List<GrouponDeal> scrapAll() throws FeedException {
         String [] grouponURLs = {
-            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor"
-            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
-            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
-            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
-            //"http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah"
-            //http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/travelcity"
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/penang",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/sabah",
+            "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/travelcity"
         };
         List<GrouponDeal> deals = new ArrayList<GrouponDeal>();
         for (int i = 0 ; i < grouponURLs.length ; i++) {
@@ -92,7 +92,7 @@ public class GrouponScraperService implements DealSiteService  {
             //xpath of city: /html/body/div/div[8]/div/a/span/span
             deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
             //xpath of currentPrice: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span
-            deal.setCurrentPrice(Double.parseDouble(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span").get(0))).asText().split("RM")[1]));
+            deal.setCurrentPrice(Double.parseDouble(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span").get(0))).asText().split("RM")[1].replaceAll(",", "")));
             //xpath of discount: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td
             if (!htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td").isEmpty())
             {
