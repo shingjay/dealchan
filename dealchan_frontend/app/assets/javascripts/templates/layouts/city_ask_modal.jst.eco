@@ -16,6 +16,10 @@
 			font-size: 14px;
 		} 
 
+		#submit-location {
+			font-size: 14px;
+		}
+
 		.footer {
   			position:absolute;
   			font-size: 12px;
@@ -48,7 +52,7 @@
 			<option value="Bandar Sunway">Bandar Sunway</option>
 		</select>
 
-		<input type="submit" id="location-dropdown" value="submit">
+		<input type="submit" id="submit-location" value="submit">
 	</div>
 
 	<br />

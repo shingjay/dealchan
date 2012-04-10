@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-	#Dealchan.Layouts.CityAskModal.cityAskModal("#city-selection-modal")
+	Dealchan.Layouts.CityAskModal.cityAskModal("#city-selection-modal")
 	
 	# Trigger City Selection Modal
 	$("#city-selection-modal").trigger('click')
@@ -26,3 +26,14 @@ jQuery ->
 			$('body').animate {
 				scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
 			}, 600
+
+	$('#submit-location').on 'click', ()->
+		#console.log $('#location-dropdown').val()
+		$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
+		$.fancybox.close()
+
+
+
+
+
+

@@ -12,17 +12,8 @@ class Dealchan.Layouts.CityAskModal
 		title			: 'Welcome'
 		openEffect		: 'fade'
 		closeBtn		: false
+		modal           : true
 	}
 
 	this.cityAskModal = (element)->
 		$(element).fancybox( @fancyboxConfig )
-
-###
-	TODO
-	edit the fancybox to have some form of border
-
-	Override somewhere
-	closeBtn:'<div title="Close" class="fancybox-item fancybox-close"></div>'
-	to
-	closeBtn:'<div title="" class="fancybox-item fancybox-close"></div>'
-###
