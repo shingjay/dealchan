@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  active: 1
+  bought: 1
+  city: MyString
+  currentPrice: 9.99
+  description: MyText
+  discount: 1
+  image: MyString
+  link: MyString
+  originalPrice: 9.99
+  pubDate: 2012-04-10 16:50:41
+  saving: 9.99
+  timeEnds: 2012-04-10 16:50:41
+  title: MyString
+  address: MyString
+  latitude: 9.99
+  longitude: 9.99
+  category: MyString
+  extraInformation: MyString
+
+two:
+  active: 1
+  bought: 1
+  city: MyString
+  currentPrice: 9.99
+  description: MyText
+  discount: 1
+  image: MyString
+  link: MyString
+  originalPrice: 9.99
+  pubDate: 2012-04-10 16:50:41
+  saving: 9.99
+  timeEnds: 2012-04-10 16:50:41
+  title: MyString
+  address: MyString
+  latitude: 9.99
+  longitude: 9.99
+  category: MyString
+  extraInformation: MyString
