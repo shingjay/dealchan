@@ -62,13 +62,7 @@ public class GrouponScraperService implements DealSiteService  {
         SyndFeed feed = syndFeedInput.build(doc);
         List<SyndEntry> feedList = feed.getEntries();
 
-        //test quartz
-        int i = 0;
-        
         for(SyndEntry f : feedList) {
-            //test quartz
-            if (i == 3) break;
-            i++;
 
             GrouponDeal deal = new GrouponDeal();
             deal.setDescription(f.getDescription().getValue());
@@ -145,7 +139,6 @@ public class GrouponScraperService implements DealSiteService  {
 
     @Override
     public List getDealsOfTheDay() {
-        System.out.println("FUCK YEA!");
         try {
             return scrapAll();  //To change body of implemented methods use File | Settings | File Templates.
         } catch (Exception ex) {

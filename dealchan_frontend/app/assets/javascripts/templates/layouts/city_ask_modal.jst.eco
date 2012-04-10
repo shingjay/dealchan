@@ -54,12 +54,9 @@
 
 		<input type="submit" id="submit-location" value="submit">
 	</div>
-
 	<br />
 	<br />
-
 	<div>
 		<p class="footer"> *This step is only required for first time Dealchan users.  </p>
 	</div>
 </div>
-

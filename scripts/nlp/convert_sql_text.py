@@ -4,7 +4,13 @@ import re
 import nltk
 from corpus import getStopwordsCorpus
 
-text_path = '/home/yingzhe/Desktop/nltk/datatext'
+text_path = './datatext'
+db_host = '127.0.0.1'
+db_port = 3306
+db_username = 'root'
+db_password = 'password'
+db_dbname = 'sd'
+table_name = 'asia_deals_clean'
 
 def processTitle(title):
 	stopwords = getStopwordsCorpus()
@@ -18,10 +24,9 @@ def processTitle(title):
 
 if __name__ == "__main__":
 	categories_names = []
-	conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='password', db='mysql')
+	conn = pymysql.connect(host=db_host, port=db_port, user=db_username, passwd=db_password, db=db_dbname)
 	cur = conn.cursor()
-	cur.execute("USE sd")
-	cur.execute("SELECT category_custom FROM asia_deals_clean GROUP BY category_custom")
+	cur.execute("SELECT category_custom FROM " + table_name +  " GROUP BY category_custom")
 
 	for r in cur:
 		categories_names.append(r[0])
@@ -33,7 +38,7 @@ if __name__ == "__main__":
 		cat_name = c.lower().replace(' ', '').replace('&', '')
 
 		file_count = 0
-		cur.execute("SELECT title FROM asia_deals_clean WHERE category_custom = '" + c + "'")
+		cur.execute("SELECT title FROM " + table_name + " WHERE category_custom = '" + c + "'")
 
 		#Create directories for categories if they don't exist
 		if not os.path.exists(text_path + '/' + cat_name):
