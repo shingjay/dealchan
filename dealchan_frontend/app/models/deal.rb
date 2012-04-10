@@ -10,7 +10,7 @@ class Deal < ActiveRecord::Base
 		.where( :city => city)
 		.order("currentPrice ASC")
 		.limit(DEALS_PER_PAGE)
-		.offset(DEALS_PER_PAGE * (page_number-1))
+		.offset(DEALS_PER_PAGE * (page_number - 1))
 	end
 
 

@@ -2,6 +2,9 @@ DealchanFrontend::Application.routes.draw do
 
   root :to => 'pages#index' # matches root and routes it to the index action in the Pages controller.
 
+  get "/deals/by_price_range(.:format)" => 'deals#get_deals_by_price_range'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
