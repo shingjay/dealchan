@@ -14,8 +14,8 @@
 <body>
 
     <div>
-        <c:forEach items="${status}" var="item">
-            <div>${item.name} | ${item.status}</div>
+        <c:forEach items="${status}" var="item" varStatus="index">
+            <div>${item.name} | ${item.status} | <a href="index/stop">Stop</a></div>
         </c:forEach>
     </div>
 
