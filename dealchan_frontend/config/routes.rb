@@ -2,8 +2,15 @@ DealchanFrontend::Application.routes.draw do
 
   root :to => 'pages#index' # matches root and routes it to the index action in the Pages controller.
 
-  get "/deals/by_price_range(.:format)" => 'deals#get_deals_by_price_range'
-  get "/deals/by_category(.:format)" => 'deals#get_deals_by_category'
+
+  # 
+  # api/v0/deals/by_price_range.json?min_price=10&max_price=60&page=1&city=Penang&category=Miscellaneous
+  # api/v0/deals/by_category.json?page=1&city=Penang&category=Miscellaneous
+  scope 'api/v0', :controller => :apis do
+    get "/deals/by_five(.:format)" => 'deals#get_deals_by_five'
+    get "/deals/by_price_range(.:format)" => 'deals#get_deals_by_price_range'
+    get "/deals/by_category(.:format)" => 'deals#get_deals_by_category'
+  end
 
 
   # The priority is based upon order of creation:
