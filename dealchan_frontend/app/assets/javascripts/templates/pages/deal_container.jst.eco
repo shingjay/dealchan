@@ -1,55 +1,25 @@
 <div class="grid_2 suffix_14">
 	<div class="containerLabel">
-		<p>CATEGORY</p>
+		<p><%= @category_id %></p>
 	</div>
 </div>
 <!-- DEAL CONTAINER -->
 <div class="grid_16 dealContainer" id="dealContainer-CATEGORYID">
-	<div class="grid_3 deal">
+
+	<% for deal in @data.deals: %>
+
+		<div class="grid_3 deal">
 		<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
 		<div class="grid_3 dealTitle">
-			<p> DEALTITLE </p>
+			<p><%= deal.deal.title %></p>
 		</div>
 		<div class="grid_3 dealDescription">
-			<p> DEALDESC </p>
+			<p><%= deal.deal.currentPrice %></p>
 		</div>
 	</div>
-	<div class="grid_3 deal">
-		<img src="assets/foodpic2.jpg" class="grid_3 deal-picture">
-		<div class="grid_3 dealTitle">
-			<p> DEALTITLE </p>
-		</div>
-		<div class="grid_3 dealDescription">
-			<p> DEALDESC </p>
-		</div>
-	</div>
-	<div class="grid_3 deal">
-		<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
-		<div class="grid_3 dealTitle">
-			<p> DEALTITLE </p>
-		</div>
-		<div class="grid_3 dealDescription">
-			<p> DEALDESC </p>
-		</div>
-	</div>
-	<div class="grid_3 deal">
-		<img src="assets/foodpic2.jpg" class="grid_3 deal-picture">
-		<div class="grid_3 dealTitle">
-			<p> DEALTITLE </p>
-		</div>
-		<div class="grid_3 dealDescription">
-			<p> DEALDESC </p>
-		</div>
-	</div>
-	<div class="grid_3 deal">
-		<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
-		<div class="grid_3 dealTitle">
-			<p> DEALTITLE </p>
-		</div>
-		<div class="grid_3 dealDescription">
-			<p> DEALDESC </p>
-		</div>
-	</div>
+
+	<% end %> 
+
 </div>
 <!-- SHOWMORE BUTTON -->
 <div class="grid_2 prefix_14">

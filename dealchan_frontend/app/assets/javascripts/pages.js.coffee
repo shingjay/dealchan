@@ -35,7 +35,8 @@ jQuery ->
 		$.fancybox.close()
 
 	for category_id in deal_categories
-		$("#deals-container").append(Dealchan.Pages.DealContainer.template)
+		Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id
+		#$("#deals-container").append(Dealchan.Pages.DealContainer.template)
 
 
 
