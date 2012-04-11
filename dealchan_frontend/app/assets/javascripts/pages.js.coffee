@@ -34,6 +34,9 @@ jQuery ->
 		$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
 		$.fancybox.close()
 
+	for category_id in deal_categories
+		$("#deals-container").append(Dealchan.Pages.DealContainer.template)
+
 
 
 

@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
 		@deal_title = "Title goes here"
 		@deal_desc = "Description goes here"
-		
+
 	end
 
 end
