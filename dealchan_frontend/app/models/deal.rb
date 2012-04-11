@@ -9,6 +9,7 @@ class Deal < ActiveRecord::Base
 		})
 		.where( :city => city)
 		.order("currentPrice ASC")
+		.group("title")
 		.limit(DEALS_PER_PAGE)
 		.offset(DEALS_PER_PAGE * (page_number - 1))
 	end
@@ -18,6 +19,7 @@ class Deal < ActiveRecord::Base
 		where(:category => category, 
 			:city => city)
 		.order("discount DESC")
+		.group("title")
 		.limit(DEALS_PER_PAGE)
 		.offset(DEALS_PER_PAGE * (page_number-1))
 	end
