@@ -55,7 +55,7 @@ public class CrawlingServiceMonitor {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println("I AM CALLEEDDDDD!");
+        //System.out.println("I AM CALLEEDDDDD!");
         
         List<CrawlerStatus> crawlerStatusList = new ArrayList<CrawlerStatus>();
         crawlerStatusHashMap = new HashMap<Class, CrawlerStatus>();
@@ -71,7 +71,7 @@ public class CrawlingServiceMonitor {
 
         crawlingService.setCrawlerStatusList(crawlerStatusList);
 
-        System.out.println("I AM DONEEE!");
+        //System.out.println("I AM DONEEE!");
     }
 
 

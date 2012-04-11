@@ -106,14 +106,24 @@ public class GrouponScraperService implements DealSiteService  {
                 deal.setOriginalPrice(deal.getCurrentPrice());
             }
 
-            Calendar timeNow = Calendar.getInstance();
-            //xpath for hour: //*[@id="hoursLeft"]
-            timeNow.add(Calendar.HOUR, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText()));
-            //xpath for minute: //*[@id="minutesLeft"]
-            timeNow.add(Calendar.MINUTE, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"minutesLeft\"]").get(0))).asText()));
-            //xpath for second: //*[@id="secondsLeft"]
-            timeNow.add(Calendar.SECOND, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"secondsLeft\"]").get(0))).asText()));
-            deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
+            //checks if deal is sold out
+            if (htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/div/div").isEmpty())
+            {
+                Calendar timeNow = Calendar.getInstance();
+                //xpath for hour: //*[@id="hoursLeft"]
+                timeNow.add(Calendar.HOUR, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText()));
+                //xpath for minute: //*[@id="minutesLeft"]
+                timeNow.add(Calendar.MINUTE, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"minutesLeft\"]").get(0))).asText()));
+                //xpath for second: //*[@id="secondsLeft"]
+                timeNow.add(Calendar.SECOND, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"secondsLeft\"]").get(0))).asText()));
+                deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
+            }
+            else
+            {
+                Calendar timeNow = Calendar.getInstance();
+                timeNow.add(Calendar.HOUR, 999999);
+                deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
+            }
 
             //xpath for active deal://*[@id="dealTakePlace"]
             deal.setActive(!htmlPage.getByXPath("//*[@id=\"dealTakePlace\"]").isEmpty());
@@ -128,7 +138,16 @@ public class GrouponScraperService implements DealSiteService  {
                 deal.setBought(Integer.parseInt(((HtmlSpan)(htmlPage.getByXPath("//*[@id=\"jDealSoldAmount\"]").get(0))).asText()));
             }
             //xpath of image url: /html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img
-            deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
+            // /html/body/div/div[9]/div[2]/div/div/div[3]/div/img
+
+            if (!htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").isEmpty())
+            {
+                deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/form/button/img").get(0))).getSrcAttribute());
+            }
+            else if (!htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/img").isEmpty())
+            {
+                deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/img").get(0))).getSrcAttribute());
+            }
 
             deal = grouponDealRepository.save(deal);
             grouponDealList.add(deal);

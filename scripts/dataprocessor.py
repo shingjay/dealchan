@@ -12,7 +12,7 @@ db_username = 'root'
 db_password = 'password'
 db_dbname = 'sd'
 raw_table = 'GrouponDeal'
-filtered_table = 'GrouponDealLive'
+filtered_table = 'deals'
 
 def processDatabase():
 	try:
@@ -22,6 +22,7 @@ def processDatabase():
 		return
 
 	conn = pymysql.connect(host=db_host, port=db_port, user=db_username, passwd=db_password, db=db_dbname)
+	conn2 = pymysql.connect(host=db_host, port=db_port, user=db_username, passwd=db_password, db=db_dbname)
 	cur = conn.cursor()
 	cur.execute('SELECT * FROM ' + raw_table)
 
@@ -98,6 +99,7 @@ def processDatabase():
 	everything else: 'Miscellaneous'
 	'''
 	conn.close()
+	conn2.close()
 
 def googlemaps_json(address):
 	""" returns json data
