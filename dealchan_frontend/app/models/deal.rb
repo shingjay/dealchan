@@ -1,5 +1,8 @@
 class Deal < ActiveRecord::Base
 
+	belongs_to :category
+	belongs_to :city
+
 	DEALS_PER_PAGE = 5
 	DEALS_PER_HIGHLIGHT = 5
 
