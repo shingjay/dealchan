@@ -5,10 +5,9 @@ import com.dealchan.backend.dealsource.adapter.DealSourceAdapter;
 import com.dealchan.backend.dealsource.entity.DealSource;
 import com.dealchan.backend.dealsource.repository.DealSourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +21,9 @@ import java.util.List;
  */
 @Service
 public class CrawlingServiceImpl implements CrawlingService {
+
+    @Autowired
+    private ThreadPoolTaskExecutor executor;
     
     @Autowired
     private DealSourceAdapter adapter;
@@ -40,9 +42,27 @@ public class CrawlingServiceImpl implements CrawlingService {
     public CrawlingServiceImpl() {
         activeThreads = new HashMap<Class, Thread>();
     }
+
+    @Override
+    public void crawl(DealSiteService dealSiteService)
+    {
+        Thread thread = activeThreads.get(dealSiteService.getClass());
+
+        if(thread != null && thread.isAlive()) {
+            throw new RuntimeException("Service is already running. Please quit the other service");
+        }
+
+        Task task = new Task(dealSiteService, dealSourceRepository, adapter);
+        thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+
+        activeThreads.put(dealSiteService.getClass(), thread);
+
+    }
     
     @Override
-    public void crawl() {
+    public void crawlAll() {
 
         System.out.println("TIU NI MA KIDDING ME?");
         
@@ -87,7 +107,7 @@ public class CrawlingServiceImpl implements CrawlingService {
         this.crawlerStatusList = crawlerStatusList;
     }
 
-    private class Task implements Runnable {
+    private class Task extends Thread {
         
         private DealSiteService dealSiteService;
         private DealSourceRepository dealSourceRepository;   

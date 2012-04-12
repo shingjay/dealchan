@@ -12,7 +12,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface CrawlingService {
-    public void crawl();
+    public void crawlAll();
+    public void crawl(DealSiteService dealSiteService);
     public void stopAll();
     public void stop(DealSiteService dealSiteService);
     public List<CrawlerStatus> getCrawlerStatus();

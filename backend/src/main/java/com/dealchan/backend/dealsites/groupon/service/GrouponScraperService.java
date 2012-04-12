@@ -146,6 +146,11 @@ public class GrouponScraperService implements DealSiteService  {
     }
 
     @Override
+    public GrouponDeal getDeal() {
+        return null;
+    }
+
+    @Override
     public List getDealsOfTheDay() {
         try {
             return scrapAll();  //To change body of implemented methods use File | Settings | File Templates.

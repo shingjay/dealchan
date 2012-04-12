@@ -1,0 +1,15 @@
+.container {
+    background-color: yellow;
+}
+
+.crawler input {
+    display: inline-block;
+}
+
+.crawler form {
+    display: inline-block;
+}
+
+.crawler {
+    border:1px solid gray;
+}
