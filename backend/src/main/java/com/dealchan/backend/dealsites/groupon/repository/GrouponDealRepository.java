@@ -1,8 +1,8 @@
 package com.dealchan.backend.dealsites.groupon.repository;
 
+import org.springframework.stereotype.Repository;
 import com.dealchan.backend.dealsites.groupon.entity.GrouponDeal;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * Created by IntelliJ IDEA.

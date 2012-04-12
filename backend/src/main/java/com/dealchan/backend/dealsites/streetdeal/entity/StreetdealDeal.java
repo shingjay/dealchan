@@ -1,4 +1,4 @@
-package com.dealchan.backend.dealsites.groupon.entity;
+package com.dealchan.backend.dealsites.streetdeal.entity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -6,13 +6,14 @@ import java.sql.Timestamp;
 
 /**
  * Created by IntelliJ IDEA.
- * User: anbiniyar
- * Date: 2/20/12
- * Time: 8:38 AM
+ * User: ong0
+ * Date: 4/5/12
+ * Time: 2:38 PM
  * To change this template use File | Settings | File Templates.
  */
+
 @Entity
-public class GrouponDeal {
+public class StreetdealDeal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +28,7 @@ public class GrouponDeal {
     @Basic
     private String description;
 
+    private Date validDate;
     private Date pubDate;
     private String city;
     private double currentPrice;
@@ -39,6 +41,7 @@ public class GrouponDeal {
     private int bought;
     private String image;
     private String address;
+    private int purchased;
 
     public long getId() {
         return id;
@@ -51,9 +54,9 @@ public class GrouponDeal {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GrouponDeal)) return false;
+        if (!(o instanceof StreetdealDeal)) return false;
 
-        GrouponDeal that = (GrouponDeal) o;
+        StreetdealDeal that = (StreetdealDeal) o;
 
         if (active != that.active) return false;
         if (bought != that.bought) return false;
@@ -72,7 +75,8 @@ public class GrouponDeal {
         if (timeEnds != null ? !timeEnds.equals(that.timeEnds) : that.timeEnds != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
-
+        if (validDate != null ? !validDate.equals(that.validDate) : that.validDate != null) return false;
+        if (purchased != null ? !purchased.equals(that.purchased) : that.purchased != null) return false;
         return true;
     }
 
@@ -213,18 +217,26 @@ public class GrouponDeal {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public String getAddress() {
         return address;
     }
-    
+
     public void setAddress(String address) {
         this.address = address;
     }
     
+    public void setValidDate(Date validDate) {
+        this.validDate = validDate;
+    }
+    
+    public void setPurchased(int purchased) {
+        this.purchased = purchased;
+    }
+
     @Override
     public String toString() {
-        return "GrouponDeal{" +
+        return "StreetdealDeal{" +
                 "title='" + title + '\'' +
                 '}';
     }
