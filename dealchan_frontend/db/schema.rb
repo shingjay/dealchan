@@ -11,12 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120412155942) do
 
-  create_table "Deals_bla", :force => true do |t|
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "deals", :force => true do |t|
     t.boolean  "active",                                 :null => false
     t.integer  "bought",                                 :null => false
-    t.string   "city"
     t.float    "currentPrice",                           :null => false
     t.text     "description",      :limit => 2147483647
     t.float    "discount",                               :null => false
@@ -31,7 +43,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "category"
+    t.integer  "category_id"
+    t.integer  "city_id"
   end
 
 end
