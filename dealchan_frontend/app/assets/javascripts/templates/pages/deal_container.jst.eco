@@ -7,18 +7,16 @@
 <div class="grid_16 dealContainer" id="dealContainer-CATEGORYID">
 
 	<% for deal in @data.deals: %>
-
 		<div class="grid_3 deal">
-		<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
-		<div class="grid_3 dealTitle">
-			<p><%= deal.deal.title %></p>
+			<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
+			<div class="grid_3 dealTitle">
+				<p><%= deal.deal.title %></p>
+			</div>
+			<div class="grid_3 dealDescription">
+				<p><%= deal.deal.currentPrice %></p>
+			</div>
 		</div>
-		<div class="grid_3 dealDescription">
-			<p><%= deal.deal.currentPrice %></p>
-		</div>
-	</div>
-
-	<% end %> 
+	<% end %>
 
 </div>
 <!-- SHOWMORE BUTTON -->

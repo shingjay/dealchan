@@ -11,14 +11,14 @@ jQuery ->
 
 	Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal img")
 
-
 	## ShowMore Button Click
 	# Manual work 
-	deal_categories = ["Food",
-						"Fitness",
-						"Events",
-						"Travel",
-						"Shopping"]
+	deal_categories = [		"Food & Drinks",
+							"Health & Beauty",
+							"Activities & Events",
+							"Shopping & Services",
+              				"Travel",
+              				"Miscellaneous"		]
 
 	# Dynamically attach event handlers to click events
 	for category_id in deal_categories
@@ -37,9 +37,3 @@ jQuery ->
 	for category_id in deal_categories
 		Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id
 		#$("#deals-container").append(Dealchan.Pages.DealContainer.template)
-
-
-
-
-
-

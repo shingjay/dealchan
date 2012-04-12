@@ -7,13 +7,12 @@ class ApplicationController < ActionController::Base
   	private
 
   	def load_categories
-  		@deal_categories = ["Food & Drinks",
-							"Health & Beauty",
-							"Activities & Events",
-							"Shopping & Services",
-              "Travel",
-              "Miscellaneous"
-            ]
+  		@deal_categories = [    "Food & Drinks",
+                              "Health & Beauty",
+                              "Activities & Events",
+                              "Shopping & Services",
+                              "Travel",
+                              "Miscellaneous"   ]
 	end
 
 end

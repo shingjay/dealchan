@@ -19,6 +19,3 @@ class Dealchan.Pages.DealContainer
 			#$.each data, (key,value) ->
 			#	
 			#	dealsContainer.append(@template(value["deal"]))
-
-
-	
