@@ -13,27 +13,33 @@ jQuery ->
 
 	## ShowMore Button Click
 	# Manual work 
-	deal_categories = [		"Food & Drinks",
-							"Health & Beauty",
-							"Activities & Events",
-							"Shopping & Services",
-              				"Travel",
-              				"Miscellaneous"		]
+	deal_categories = {	"1":"Activities & Events",
+	"2":"Food & Drinks",
+	"3":"Health & Beauty",
+	"4":"Shopping & Services",
+	"5":"Travel",
+	"6":"Miscellaneous"}
+
+
 
 	# Dynamically attach event handlers to click events
-	for category_id in deal_categories
-		$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
-			Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), 'http://...'
+	for category_id, category_name of deal_categories
+		Dealchan.Pages.DealContainer.initializeDeals($("#deals-container"), category_id, category_name)
+
+		#$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
+		#	console.log 'push to show more'
+			#Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), "/api/v0/deals/by_category.json?page=3&city=3&category=#{event.data.cat}"
 		$("#jump-to-#{category_id}").on 'click', { cat : category_id }, (event)->
 			$('html,body').animate {
 				scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
 			}, 600
+
 
 	$('#submit-location').on 'click', ()->
 		#console.log $('#location-dropdown').val()
 		$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
 		$.fancybox.close()
 
-	for category_id in deal_categories
-		Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id
+	#for category_id, category_name in deal_categories
+		#Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id
 		#$("#deals-container").append(Dealchan.Pages.DealContainer.template)
