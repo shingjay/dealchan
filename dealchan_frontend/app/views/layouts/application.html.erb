@@ -16,9 +16,9 @@
 
 		<div id="jump-to-shortcut" style="top:100px;position:fixed">
 			<ul>
-				<% @deal_categories.each do |category| %>
+				<% @deal_categories.each do |category_id, category_name| %>
 					<li>
-						<a href="#" id="jump-to-<%= category %>"><%= category %></a>
+						<a href="#" id="jump-to-<%= category_id %>"><%= category_name %></a>
 					</li>
 				<% end %>
 			</ul>
