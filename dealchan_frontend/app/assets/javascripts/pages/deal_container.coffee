@@ -5,7 +5,7 @@ class Dealchan.Pages.DealContainer
 	# The place to append to
 	# the category_id to set
 	# make query to server and populate
-	this.initializeDeals = (dealsContainer, category_id, category_name)->
+	this.initializeDeals = (dealsContainer, category_id, category_name, callback_function)->
 		$.getJSON "api/v0/deals/by_five.json?city=3&category=#{category_id}", (data)->
 			this.template = JST["templates/pages/deal_container"]
 			
@@ -15,6 +15,8 @@ class Dealchan.Pages.DealContainer
 				category_name : category_name
 			}
 			dealsContainer.append(@template(template_data))
+
+			callback_function(category_id, category_name)
 			#$.each data, (key,value) ->
 			#	
 			#	dealsContainer.append(@template(value["deal"]))

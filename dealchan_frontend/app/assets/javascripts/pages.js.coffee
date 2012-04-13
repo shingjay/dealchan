@@ -24,16 +24,18 @@ jQuery ->
 
 	# Dynamically attach event handlers to click events
 	for category_id, category_name of deal_categories
-		Dealchan.Pages.DealContainer.initializeDeals($("#deals-container"), category_id, category_name)
+		Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id, category_name, (category_id, category_name)->
 
-		#$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
-		#	console.log 'push to show more'
-			#Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), "/api/v0/deals/by_category.json?page=3&city=3&category=#{event.data.cat}"
-		$("#jump-to-#{category_id}").on 'click', { cat : category_id }, (event)->
-			$('html,body').animate {
-				scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
-			}, 600
-
+			$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
+				console.log 'push to show more'
+				Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), "/api/v0/deals/by_category.json?page=3&city=3&category=#{event.data.cat}"
+			$("#jump-to-#{category_id}").on 'click', { cat : category_id }, (event)->
+				console.log "jump to cat"
+				console.log event.data.cat
+				$('html,body').animate {
+					scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
+				}, 600
+	
 
 	$('#submit-location').on 'click', ()->
 		#console.log $('#location-dropdown').val()
