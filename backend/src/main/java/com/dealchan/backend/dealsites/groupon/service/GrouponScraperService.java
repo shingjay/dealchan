@@ -37,7 +37,7 @@ public class GrouponScraperService implements DealSiteService  {
 
 
     public List<GrouponDeal> scrapAll() throws FeedException {
-        String [] grouponURLs = {
+        String [] grouponMYURLs = {
             "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/johor",
             "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur",
             "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-selangor",
@@ -46,8 +46,14 @@ public class GrouponScraperService implements DealSiteService  {
             "http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/travelcity"
         };
         List<GrouponDeal> deals = new ArrayList<GrouponDeal>();
-        for (int i = 0 ; i < grouponURLs.length ; i++) {
-            deals.addAll((List<GrouponDeal>)scrap(grouponURLs[i]));
+        for (int i = 0 ; i < grouponMYURLs.length ; i++) {
+            List<GrouponDeal> MYDeals = (List<GrouponDeal>)scrap(grouponMYURLs[i]);
+            for (GrouponDeal gd : MYDeals)
+            {
+                gd.setCountry("Malaysia");
+                grouponDealRepository.save(gd);
+            }
+            deals.addAll(MYDeals);
         }
         return deals;
     }
@@ -76,10 +82,32 @@ public class GrouponScraperService implements DealSiteService  {
             // visit the link
             HtmlPage htmlPage = (HtmlPage)webClient.getPage(deal.getLink());
 
-            deal.setAddress(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div/h2").get(0))).asText());
+            HtmlElement element = htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div/h2").isEmpty() ? null : (HtmlElement)htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div/h2").get(0);
+            String header = null;
+            if (element != null)
+            {
+                header = element.asText();
+            }
+            else
+            {
+                header = "";
+            }
+            element = (HtmlElement) htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div[3]/div[2]/div/div").get(0);
+            Iterable<HtmlElement> elements = element.getChildElements();
+            for(HtmlElement e : elements) {
+                element.removeChild(e);
+            }
+            deal.setAddress(header + ", " + element.asText());
 
             //xpath of city: /html/body/div/div[8]/div/a/span/span
-            deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
+            if (url.endsWith("travelcity"))
+            {
+                deal.setCity("Travel");
+            }
+            else
+            {
+                deal.setCity(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[8]/div/a/span/span").get(0))).asText().split("Deals")[0]);
+            }
             //xpath of currentPrice: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span
             deal.setCurrentPrice(Double.parseDouble(((HtmlSpan)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/form/div/span/span").get(0))).asText().split("RM")[1].replaceAll(",", "")));
             //xpath of discount: /html/body/div/div[9]/div[2]/div/div/div[2]/form/div/table/tbody/tr[2]/td
@@ -96,21 +124,24 @@ public class GrouponScraperService implements DealSiteService  {
             }
 
             //checks if deal is sold out
-            if (htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[2]/div/div").isEmpty())
+            try
             {
                 Calendar timeNow = Calendar.getInstance();
                 //xpath for hour: //*[@id="hoursLeft"]
+                System.out.print(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText() + ",");
                 timeNow.add(Calendar.HOUR, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"hoursLeft\"]").get(0))).asText()));
                 //xpath for minute: //*[@id="minutesLeft"]
+                System.out.print(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"minutesLeft\"]").get(0))).asText() + ",");
                 timeNow.add(Calendar.MINUTE, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"minutesLeft\"]").get(0))).asText()));
                 //xpath for second: //*[@id="secondsLeft"]
+                System.out.print(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"secondsLeft\"]").get(0))).asText() + ",\n");
                 timeNow.add(Calendar.SECOND, Integer.parseInt(((HtmlListItem)(htmlPage.getByXPath("//*[@id=\"secondsLeft\"]").get(0))).asText()));
                 deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
             }
-            else
+            catch (Exception e)
             {
                 Calendar timeNow = Calendar.getInstance();
-                timeNow.add(Calendar.HOUR, 999999);
+                timeNow.add(Calendar.HOUR, 99999);
                 deal.setTimeEnds(new Timestamp(timeNow.getTimeInMillis()));
             }
 
@@ -138,17 +169,18 @@ public class GrouponScraperService implements DealSiteService  {
                 deal.setImage(((HtmlImage)(htmlPage.getByXPath("/html/body/div/div[9]/div[2]/div/div/div[3]/div/img").get(0))).getSrcAttribute());
             }
 
-            deal = grouponDealRepository.save(deal);
+            //deal = grouponDealRepository.save(deal);
             grouponDealList.add(deal);
         }
 
         return grouponDealList;
     }
 
+    /* What is this for?
     @Override
     public GrouponDeal getDeal() {
         return null;
-    }
+    }*/
 
     @Override
     public List getDealsOfTheDay() {

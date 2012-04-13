@@ -27,6 +27,8 @@ public class CrawlerConfig {
         threadPoolTaskExecutor.setCorePoolSize(5);
         threadPoolTaskExecutor.setMaxPoolSize(10);
         threadPoolTaskExecutor.setQueueCapacity(25);
+
+        return null;
     }
 
 }

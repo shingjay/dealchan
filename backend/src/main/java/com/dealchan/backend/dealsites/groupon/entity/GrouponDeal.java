@@ -29,6 +29,7 @@ public class GrouponDeal {
 
     private Date pubDate;
     private String city;
+    private String country;
     private double currentPrice;
     private double discount;
     private double saving;
@@ -51,7 +52,7 @@ public class GrouponDeal {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GrouponDeal)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         GrouponDeal that = (GrouponDeal) o;
 
@@ -62,7 +63,9 @@ public class GrouponDeal {
         if (id != that.id) return false;
         if (Double.compare(that.originalPrice, originalPrice) != 0) return false;
         if (Double.compare(that.saving, saving) != 0) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (city != null ? !city.equals(that.city) : that.city != null) return false;
+        if (country != null ? !country.equals(that.country) : that.country != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (extraInformation != null ? !extraInformation.equals(that.extraInformation) : that.extraInformation != null)
             return false;
@@ -71,7 +74,6 @@ public class GrouponDeal {
         if (pubDate != null ? !pubDate.equals(that.pubDate) : that.pubDate != null) return false;
         if (timeEnds != null ? !timeEnds.equals(that.timeEnds) : that.timeEnds != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
         return true;
     }
@@ -86,6 +88,7 @@ public class GrouponDeal {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (pubDate != null ? pubDate.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
         temp = currentPrice != +0.0d ? Double.doubleToLongBits(currentPrice) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = discount != +0.0d ? Double.doubleToLongBits(discount) : 0L;
@@ -99,6 +102,7 @@ public class GrouponDeal {
         result = 31 * result + (active ? 1 : 0);
         result = 31 * result + bought;
         result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
     }
 
@@ -124,6 +128,14 @@ public class GrouponDeal {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public double getCurrentPrice() {

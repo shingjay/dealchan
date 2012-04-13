@@ -1,30 +1,25 @@
 package com.dealchan.backend.dealsites.streetdeal.service;
 
 import com.dealchan.backend.dealsites.DealSiteService;
-import com.dealchan.backend.dealsites.streetdeal.*;
 import com.dealchan.backend.dealsites.streetdeal.entity.StreetdealDeal;
 import com.dealchan.backend.dealsites.streetdeal.repository.StreetdealRepository;
 import com.dealchan.backend.utils.web.CustomWebClient;
-import com.dealchan.backend.utils.web.CustomWebClientImpl;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.*;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by IntelliJ IDEA.
@@ -84,7 +79,13 @@ public class StreetdealScraperService implements DealSiteService{
                         streetdealDeal.setOriginalPrice(Double.parseDouble(child.item(j).getTextContent()));
                     }
                     else if(text.equalsIgnoreCase("deal:validUntil")) {
-                        Date date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(child.item(j).getTextContent());
+
+                        Date date = null;
+                        try {
+                            date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(child.item(j).getTextContent());
+                        } catch (ParseException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
                         streetdealDeal.setValidDate(date);
                     }
                     else if(text.equalsIgnoreCase("deal:purchased")) {
