@@ -4,8 +4,8 @@ DealchanFrontend::Application.routes.draw do
 
 
   # 
-  # api/v0/deals/by_price_range.json?min_price=10&max_price=60&page=1&city=Penang&category=Miscellaneous
-  # api/v0/deals/by_category.json?page=1&city=Penang&category=Miscellaneous
+  # api/v0/deals/by_price_range.json?min_price=10&max_price=60&page=1&city=1
+  # api/v0/deals/by_category.json?page=1&city=1&category=6
   scope 'api/v0', :controller => :apis do
     get "/deals/by_five(.:format)" => 'deals#get_deals_by_five'
     get "/deals/by_price_range(.:format)" => 'deals#get_deals_by_price_range'

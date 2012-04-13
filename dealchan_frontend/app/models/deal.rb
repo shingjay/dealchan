@@ -16,9 +16,9 @@ class Deal < ActiveRecord::Base
 				:max_price => args[:max_price]
 			})
 		elsif args[:category]
-			data = self.where(:category => args[:category])
+			data = self.where(:category_id => args[:category])
 		end
-		data.where( :city => args[:city])
+		data.where( :city_id => args[:city])
 		.limit(DEALS_PER_HIGHLIGHT)
 
 	end
@@ -28,7 +28,7 @@ class Deal < ActiveRecord::Base
 			:min_price => min_price,
 			:max_price => max_price
 		})
-		.where( :city => city)
+		.where( :city_id => city)
 		.order("currentPrice ASC")
 		.group("title")
 		.limit(DEALS_PER_PAGE)
@@ -37,8 +37,8 @@ class Deal < ActiveRecord::Base
 
 
 	def self.get_deal_with_category_and_city(category, city, page_number)
-		where(:category => category, 
-			:city => city)
+		where(:category_id => category, 
+			:city_id => city)
 		.order("discount DESC")
 		.group("title")
 		.limit(DEALS_PER_PAGE)
