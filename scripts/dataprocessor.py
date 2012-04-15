@@ -24,6 +24,12 @@ def processDatabase():
 	conn = pymysql.connect(host=db_host, port=db_port, user=db_username, passwd=db_password, db=db_dbname)
 	conn2 = pymysql.connect(host=db_host, port=db_port, user=db_username, passwd=db_password, db=db_dbname)
 
+	# clear filtered db
+	cur = conn.cursor()
+	cur.execute("DELETE FROM " + filtered_table)
+	cur.close()
+
+	# categories id mapping
 	categories_dict = dict()
 	cur = conn.cursor()
 	cur.execute("SELECT id, title FROM categories")
@@ -32,6 +38,7 @@ def processDatabase():
 	cur.close()
 	print categories_dict
 
+	# cities id mapping
 	cities_dict = dict()
 	cur = conn.cursor()
 	cur.execute("SELECT id, name, country FROM cities")
@@ -115,13 +122,6 @@ def processDatabase():
 		cur2.execute("INSERT INTO " + filtered_table + " (active, bought, currentPrice, description, discount, extraInformation, image, link, originalPrice, pubDate, saving, timeEnds, title, address, latitude, longitude, category_id, city_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", db_entry)
 		cur2.close()
 	cur.close()
-
-	''' cur.execute("INSERT INTO GrouponDealLive (active, bought, city, currentPrice,
-	 description, discount, extraInfo, image, link, origPrice, pubDate,
-	 saving, timeEnds, title, address, latitude, longitude, category)
-	 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-	 %s, %s, %s, %s)", dict)
-	'''
 
 	'''Categories mapping:
 	'activitiesevents' : 'Activities & Events'

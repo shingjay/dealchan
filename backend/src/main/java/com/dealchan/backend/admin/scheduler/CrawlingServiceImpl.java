@@ -22,8 +22,8 @@ import java.util.List;
 @Service
 public class CrawlingServiceImpl implements CrawlingService {
 
-    @Autowired
-    private ThreadPoolTaskExecutor executor;
+    //@Autowired
+    //private ThreadPoolTaskExecutor executor;
     
     @Autowired
     private DealSourceAdapter adapter;

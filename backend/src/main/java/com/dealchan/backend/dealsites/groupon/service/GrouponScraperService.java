@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
+import java.io.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by IntelliJ IDEA.
@@ -35,6 +37,87 @@ public class GrouponScraperService implements DealSiteService  {
     @Autowired
     private GrouponDealRepository grouponDealRepository;
 
+    //@Autowired
+    private Properties schedulerProperties;
+
+    private void processDatabase()
+    {
+        schedulerProperties = new Properties();
+        try {
+            //load a properties file
+            schedulerProperties.load(new FileInputStream("scheduler.properties"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        ProcessBuilder pb = new ProcessBuilder("python", schedulerProperties.getProperty("root.path") + schedulerProperties.getProperty("scripts.path") + schedulerProperties.getProperty("processor.filename"));
+        //Map<String, String> env = pb.environment();
+        pb.directory(new File(schedulerProperties.getProperty("root.path") + schedulerProperties.getProperty("scripts.path")));
+        InputStream in = null;
+        BufferedInputStream buf = null;
+        InputStreamReader inread = null;
+        BufferedReader bufferedreader = null;
+        InputStream in2 = null;
+        BufferedInputStream buf2 = null;
+        InputStreamReader inread2 = null;
+        BufferedReader bufferedreader2 = null;
+        try
+        {
+            Process p = pb.start();
+
+            in = p.getInputStream();
+            buf = new BufferedInputStream(in);
+            inread = new InputStreamReader(buf);
+            bufferedreader = new BufferedReader(inread);
+            in2 = p.getErrorStream();
+            buf2 = new BufferedInputStream(in2);
+            inread2 = new InputStreamReader(buf2);
+            bufferedreader2 = new BufferedReader(inread2);
+
+            String line;
+            while ((line = bufferedreader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            while ((line = bufferedreader2.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            try
+            {
+                if (p.waitFor() != 0)
+                {
+                    System.err.println("error: exit value = " + p.exitValue());
+                }
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    bufferedreader.close();
+                    inread.close();
+                    buf.close();
+                    in.close();
+                    bufferedreader2.close();
+                    inread2.close();
+                    buf2.close();
+                    in2.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     public List<GrouponDeal> scrapAll() throws FeedException {
         String [] grouponMYURLs = {
@@ -55,6 +138,9 @@ public class GrouponScraperService implements DealSiteService  {
             }
             deals.addAll(MYDeals);
         }
+
+        processDatabase();
+
         return deals;
     }
 
