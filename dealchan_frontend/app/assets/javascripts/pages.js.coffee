@@ -28,7 +28,7 @@ jQuery ->
 
 			$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
 				console.log 'push to show more'
-				Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), "/api/v0/deals/by_category.json?page=3&city=3&category=#{event.data.cat}"
+				Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), "/api/v0/deals/by_category.json?page=3&city=3&category=#{event.data.cat}", category_id, category_name
 			$("#jump-to-#{category_id}").on 'click', { cat : category_id }, (event)->
 				console.log "jump to cat"
 				console.log event.data.cat
