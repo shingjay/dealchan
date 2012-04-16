@@ -6,7 +6,7 @@ class Dealchan.Pages.DealContainer
 	# the category_id to set
 	# make query to server and populate
 	this.initializeDeals = (dealsContainer, category_id, category_name, callback_function)->
-		$.getJSON "api/v0/deals/by_five.json?city=3&category=#{category_id}", (data)->
+		$.getJSON "api/v0/deals/by_category.json?page=1&city=3&category=#{category_id}", (data)->
 			this.template = JST["templates/pages/deal_container"]
 
 			template_data = {

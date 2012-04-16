@@ -6,7 +6,7 @@ class Dealchan.Layouts.DealContainer
 	this.showMoreDeals = (element, api_url, category_id, category_name)->
 		console.log api_url
 
-		$.getJSON "api/v0/deals/by_five.json?city=1&category=#{category_id}", (data)->
+		$.getJSON "api/v0/deals/by_category.json?page=2&city=3&category=#{category_id}", (data)->
 			#console.log data['deals']
 			this.template = JST["templates/layouts/deal_grid"]
 			
