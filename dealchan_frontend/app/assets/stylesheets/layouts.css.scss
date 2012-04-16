@@ -66,7 +66,7 @@ ul#jump-to-shortcut li a {
 	font-size: 18px;
 }
 
-.headerBar {
+.header-bar {
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -81,7 +81,7 @@ ul#jump-to-shortcut li a {
 	display: inline;
 }
 
-.categoriesBar {
+.categories-bar {
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -96,38 +96,38 @@ ul#jump-to-shortcut li a {
 	border-top: 1px solid #cfcaca; 
 }
 
-.categoriesBar ul {
+.categories-bar ul {
 	margin-top: 5px;
 	text-align: center;			/* centers the navigation bar */
 	list-style: none;		/* eliminate list item marker */
 }
 
-.categoriesBar ul li {
+.categories-bar ul li {
 	display: inline;			/* needed to create horizontal effect */
 	margin: 0;					/* fixes the categories bar margin */
 	padding: 0;
 }
 
-.categoriesBar ul li a {
+.categories-bar ul li a {
 	text-decoration: none;
 	/*padding: .2em .1em;*/
 	padding: 7px 10px 11px 10px;
 }
 
-.categoriesBar a:hover {
+.categories-bar a:hover {
 	background-color: #bfc9ce;		/* hover over background color */
 }
 
-.categoriesBar #priceNav {
+.categories-bar #priceNav {
 	margin-left: -10px;
 	padding: 7px 20px 11px 20px;
 }
 
-.categoriesBar #categoryNav {
+.categories-bar #categoryNav {
 	margin-left: 0px;
 }
 
-.leftHeaderBar {
+.left-header-bar {
 	float: left;
 	display: inline;
 }
@@ -143,17 +143,17 @@ ul#jump-to-shortcut li a {
 	width: auto;
 }
 
-.rightHeaderBar {
+.right-header-bar {
 	float: right;
 	display: inline;
 }
 
-.rightHeaderBar ul {
+.right-header-bar ul {
 	list-style-type: none;
 	margin-top: 7px;
 }
 
-.rightHeaderBar ul li {
+.right-header-bar ul li {
 	float: left;
 }
 
@@ -178,7 +178,10 @@ ul#jump-to-shortcut li a {
 	background-repeat: no-repeat;
 }
 
-.socialButtons a {
+/* DISPLAY CONTROLS FOR SOCIAL BUTTONS
+------------------------------------------------------------------*/
+
+.social-buttons a {
 	float: left;
 	background: url(social_buttons.png) no-repeat;
 	overflow: hidden;
@@ -186,26 +189,24 @@ ul#jump-to-shortcut li a {
 	height: 25px;
 }
 
-.socialButtons a span {
+.social-buttons a span {
 	display: none;				/* hide span text */
 }
 
-/* DISPLAY CONTROLS FOR SOCIAL BUTTONS
-------------------------------------------------------------------*/
-.socialButtons a.facebookButton {
+.social-buttons a.facebook-button {
 	background-position: 0 0;
 }
 
-.socialButtons a.facebookButton:hover {
+.social-buttons a.facebook-button:hover {
 	background-position: -50px 0;
 }
 
-.socialButtons a.twitterButton {
+.social-buttons a.twitter-button {
 	background-position: 0 -100px;
 	margin-right: 50px;
 }
 
-.socialButtons a.twitterButton:hover {
+.social-buttons a.twitter-button:hover {
 	background-position: -50px -100px;
 }
 
@@ -229,7 +230,7 @@ body {
 
 /* DEAL CONTAINERS
 ------------------------------------------------------------------*/
-.containerLabel {
+.container-label {
 	margin-top: 25px;
 	border: solid 1px;
 	text-align: center;
@@ -237,7 +238,7 @@ body {
 	width: auto;
 }
 
-.dealContainer {
+.deal-container {
 	padding: 10px 0px 10px 0px;
 	border: solid 1px #888;
 
@@ -254,7 +255,7 @@ body {
 	width: 150px;
 }
 
-.dealTitle {
+.deal-title {
 	background-color: #efefef;
 	margin-top: 5px;
 	padding: 0px;
@@ -264,7 +265,7 @@ body {
 	width: auto;
 }
 
-.dealDescription {
+.deal-description {
 	background-color: #ededed;
 	margin-top: 5px;
 	padding: 0px;
@@ -274,7 +275,7 @@ body {
 	width: auto;
 }
 
-.showMoreButton {
+.show-more-button {
 	border: solid 1px;
 	text-align: center;
 	height: 20px;

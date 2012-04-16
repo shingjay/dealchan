@@ -1,10 +1,10 @@
 <% for deal in @data.deals: %>
 	<div class="grid_3 deal" id="deal-id-<%= deal.deal.id %>">
 		<img src="<%= deal.deal.image %>" class="grid_3 deal-picture">
-		<div class="grid_3 dealTitle">
+		<div class="grid_3 deal-title">
 			<p><%= deal.deal.title[0..40] %></p>
 		</div>
-		<div class="grid_3 dealDescription">
+		<div class="grid_3 deal-description">
 			<p><%= deal.deal.currentPrice %></p>
 		</div>
 	</div>
