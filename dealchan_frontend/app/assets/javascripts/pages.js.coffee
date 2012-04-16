@@ -9,6 +9,14 @@ jQuery ->
 	# Trigger City Selection Modal
 	$("#city-selection-modal").trigger('click')
 
+	# Sidebar implementation
+	$('#jump-to-shortcut a').stop().animate {
+		'marginLeft':'-85px'}, 1000
+	$('#jump-to-shortcut > li').hover(
+		-> $('a',$(this)).stop().animate({'marginLeft':'-2px'},200)
+		-> $('a',$(this)).stop().animate({'marginLeft':'-85px'},200)
+	)
+
 	# Manual work 
 	deal_categories = {	"1":"Activities & Events",
 	"2":"Food & Drinks",
