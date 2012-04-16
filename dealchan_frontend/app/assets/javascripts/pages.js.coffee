@@ -8,9 +8,7 @@ jQuery ->
 	
 	# Trigger City Selection Modal
 	$("#city-selection-modal").trigger('click')
-	#Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal img")
 
-	## ShowMore Button Click
 	# Manual work 
 	deal_categories = {	"1":"Activities & Events",
 	"2":"Food & Drinks",
@@ -22,7 +20,6 @@ jQuery ->
 	# Dynamically attach event handlers to click events
 	for category_id, category_name of deal_categories
 		Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id, category_name, (category_id, category_name)->
-
 			$("#showMore-#{category_id}").on 'click', { cat : category_id }, (event)->
 				console.log 'push to show more'
 				Dealchan.Layouts.DealContainer.showMoreDeals $("#dealContainer-#{event.data.cat}"), "/api/v0/deals/by_category.json?page=3&city=3&category=#{event.data.cat}", category_id, category_name

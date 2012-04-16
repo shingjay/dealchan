@@ -14,7 +14,7 @@ class Dealchan.Layouts.ShowDealPopover
 				data : data
 			}
 
-			console.log data
+			#console.log data
 
 			this.fancyboxConfig = {
 				content 		: @template(template_data)

@@ -4,8 +4,6 @@ class Dealchan.Layouts.DealContainer
 
 	# Dynamic insertion of deals from mockdata.json
 	this.showMoreDeals = (element, api_url, category_id, category_name)->
-		# for counter in [1..20]
-			# element.append(@dealGridTemplate)
 		console.log api_url
 
 		$.getJSON "api/v0/deals/by_five.json?city=3&category=#{category_id}", (data)->
