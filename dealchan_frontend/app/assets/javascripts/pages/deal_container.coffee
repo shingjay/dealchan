@@ -17,7 +17,7 @@ class Dealchan.Pages.DealContainer
 			}
 			dealsContainer.append(@template(template_data))
 
-			#callback_function(category_id, category_name)
+			callback_function(category_id, category_name)
 			#$.each data, (key,value) ->
 			#	
 			#	dealsContainer.append(@template(value["deal"]))

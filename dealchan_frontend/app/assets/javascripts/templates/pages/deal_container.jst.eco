@@ -1,8 +1,10 @@
-<div class="grid_2 suffix_14">
+<!-- CONTAINER LABEL -->
+<div class="grid_3 suffix_13">
 	<div class="containerLabel">
 		<p><%= @category_name %></p>
 	</div>
 </div>
+
 <!-- DEAL CONTAINER -->
 <div class="grid_16 dealContainer" id="dealContainer-<%= @category_id %>">
 
@@ -19,6 +21,7 @@
 	<% end %>
 
 </div>
+
 <!-- SHOWMORE BUTTON -->
 <div class="grid_2 prefix_14">
 	<div class="showMoreButton" id="showMore-<%= @category_id %>">
