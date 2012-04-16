@@ -8,8 +8,7 @@ jQuery ->
 	
 	# Trigger City Selection Modal
 	$("#city-selection-modal").trigger('click')
-
-	Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal img")
+	#Dealchan.Layouts.ShowDealPopover.showDealPopover(".deal img")
 
 	## ShowMore Button Click
 	# Manual work 
@@ -19,8 +18,6 @@ jQuery ->
 	"4":"Shopping & Services",
 	"5":"Travel",
 	"6":"Miscellaneous"}
-
-
 
 	# Dynamically attach event handlers to click events
 	for category_id, category_name of deal_categories

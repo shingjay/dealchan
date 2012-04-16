@@ -85,12 +85,12 @@
 <div class="deal-modal-dialog">
 
 	<div id="deal-title">
-		Deal title goes here
+		<%= @data.deal.title %>
 	</div>
 
 	<div id="level_2">
 		<span id="deal-pic">
-			<img src="assets/foodpic1.jpg">
+			<img src="<%= @data.deal.image %>">
 		</span>
 		<span id="deal-loc">
 			<img src="assets/deal_loc1.png">
@@ -103,15 +103,7 @@
 
 	<div class="deal-desc">
 		<div id="deal-desc-text">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in magna felis, non facilisis nisl. Sed erat elit, condimentum commodo adipiscing non, consequat ut risus. Nulla at cursus elit. Fusce lacus eros, fermentum ut luctus sed, ornare vitae nulla. Pellentesque quam magna, vulputate sit amet iaculis eu, dictum vel magna. Proin condimentum lacinia ante a fringilla. Nunc eleifend urna quis augue viverra eu porttitor leo feugiat.
-			</p>
-
-			<br />
-
-			<p>
-				Proin consectetur sagittis gravida. Praesent mattis nibh sed augue convallis ultricies. Donec id nisi nisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin auctor imperdiet tellus eget semper. Cras eu sapien lorem, eget posuere eros. Aenean semper venenatis turpis, dignissim rhoncus risus dapibus vitae. Mauris sed semper nunc. Phasellus faucibus egestas nulla nec sagittis. Vivamus congue venenatis nisi a varius. Pellentesque fringilla, ligula non cursus vehicula, magna tellus tincidunt metus, a semper enim massa in nibh. Integer non tempus sem. Maecenas eu pellentesque lectus.
-			</p>
+			<%- @data.deal.description %>
 		</div>
 	</div>
 

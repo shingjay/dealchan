@@ -8,7 +8,7 @@ class Dealchan.Pages.DealContainer
 	this.initializeDeals = (dealsContainer, category_id, category_name, callback_function)->
 		$.getJSON "api/v0/deals/by_five.json?city=3&category=#{category_id}", (data)->
 			this.template = JST["templates/pages/deal_container"]
-			
+
 			template_data = {
 				data : data
 				category_id : category_id
@@ -20,3 +20,13 @@ class Dealchan.Pages.DealContainer
 			#$.each data, (key,value) ->
 			#	
 			#	dealsContainer.append(@template(value["deal"]))
+
+
+# Testing out an approach to attach deal ids to a deal below
+			#console.log data['deals']
+
+			for singleDeal in data['deals']
+				deal_id = singleDeal['deal']['id']
+				$("#deal-id-#{deal_id}").on 'click',{ id : deal_id }, (event)->
+					Dealchan.Layouts.ShowDealPopover.displayPopover event.data.id
+					#console.log event.data.id

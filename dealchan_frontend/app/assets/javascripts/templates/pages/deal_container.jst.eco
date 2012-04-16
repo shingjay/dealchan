@@ -7,7 +7,7 @@
 <div class="grid_16 dealContainer" id="dealContainer-<%= @category_id %>">
 
 	<% for deal in @data.deals: %>
-		<div class="grid_3 deal">
+		<div class="grid_3 deal" id="deal-id-<%= deal.deal.id %>">
 			<img src="assets/foodpic1.jpg" class="grid_3 deal-picture">
 			<div class="grid_3 dealTitle">
 				<p><%= deal.deal.title %></p>

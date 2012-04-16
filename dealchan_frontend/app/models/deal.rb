@@ -45,5 +45,10 @@ class Deal < ActiveRecord::Base
 		.offset(DEALS_PER_PAGE * (page_number-1))
 	end
 
+	def self.get_deal_with_id(id)
+
+		where( :id => id )
+
+	end
 
 end

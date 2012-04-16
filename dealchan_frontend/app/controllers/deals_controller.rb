@@ -18,4 +18,8 @@ class DealsController < ApplicationController
 		@deals = Deal.get_deal_with_category_and_city(params[:category].to_i, params[:city].to_i, params[:page].to_i)
 	end
 
+	def get_deal_by_id
+		@deal = Deal.get_deal_with_id(params[:id].to_i).first
+	end
+
 end

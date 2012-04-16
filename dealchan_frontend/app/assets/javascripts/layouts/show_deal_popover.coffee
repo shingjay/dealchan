@@ -1,17 +1,28 @@
 Dealchan.Layouts ||= {}
 
 class Dealchan.Layouts.ShowDealPopover
-	
-	this.template = JST["templates/layouts/show_deal_popover"]
 
-	this.fancyboxConfig = {
-		content 		: @template
-		maxHeight 		: 800
-		maxWidth 		: 800
-		scrolling 		: no
-		title			: 'Deal Information'
-		openEffect		: 'elastic'
-	}
+	this.displayPopover = (deal_id) ->
 
-	this.showDealPopover = (element)->
-		$(element).fancybox( @fancyboxConfig )
+		console.log "calling api on #{deal_id}"
+
+		$.getJSON "api/v0/deals/by_id.json?id=#{deal_id}", (data)->
+
+			this.template = JST["templates/layouts/show_deal_popover"]
+
+			template_data = {
+				data : data
+			}
+
+			console.log data
+
+			this.fancyboxConfig = {
+				content 		: @template(template_data)
+				maxHeight 		: 800
+				maxWidth 		: 800
+				scrolling 		: no
+				title			: 'Deal Information'
+				openEffect		: 'elastic'
+			}
+
+			$.fancybox(@fancyboxConfig)
