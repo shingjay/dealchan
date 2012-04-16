@@ -100,7 +100,10 @@ def processDatabase():
 
 		# assign city id
 		try:
-			city_id = cities_dict[c[3].strip() + '#' + c[16].strip()]
+			if category_id == categories_dict['Travel']:
+				city_id = cities_dict['Travel#' + c[16].strip()]
+			else:
+				city_id = cities_dict[c[3].strip() + '#' + c[16].strip()]
 			#something
 		except KeyError:
 			print 'City and country not found: ' + c[3].strip() + '#' + c[16].strip()
