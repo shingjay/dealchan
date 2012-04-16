@@ -11,11 +11,36 @@ class DealsController < ApplicationController
 	end
 
 	def get_deals_by_price_range
-		@deals = Deal.get_deal_with_price_range_and_city(params[:min_price].to_f, params[:max_price].to_f, params[:city].to_i, params[:page].to_i)
+
+		if params[:page].to_i == 1
+			number_of_deals = 5
+		elsif params[:page].to_i >= 2
+			number_of_deals = 3
+		end
+
+		@deals = Deal.get_deal_with_price_range_and_city(params[:min_price].to_f, 
+															params[:max_price].to_f, 
+															params[:city].to_i, 
+															params[:page].to_i,
+															number_of_deals
+															)
 	end
 
 	def get_deals_by_category
-		@deals = Deal.get_deal_with_category_and_city(params[:category].to_i, params[:city].to_i, params[:page].to_i)
+
+		# If page=1, fetch 5 max
+		# If page>=2, fetch 3 for now
+
+		if params[:page].to_i == 1
+			number_of_deals = 5
+		elsif params[:page].to_i >= 2
+			number_of_deals = 3
+		end
+
+		@deals = Deal.get_deal_with_category_and_city(params[:category].to_i, 
+														params[:city].to_i, 
+														params[:page].to_i,
+														number_of_deals)
 	end
 
 	def get_deal_by_id

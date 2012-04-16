@@ -23,7 +23,7 @@ class Deal < ActiveRecord::Base
 
 	end
 
-	def self.get_deal_with_price_range_and_city(min_price, max_price, city, page_number)
+	def self.get_deal_with_price_range_and_city(min_price, max_price, city, page_number, number_of_deals)
 		where("currentPrice >= :min_price AND currentPrice < :max_price", {
 			:min_price => min_price,
 			:max_price => max_price
@@ -31,18 +31,18 @@ class Deal < ActiveRecord::Base
 		.where( :city_id => city)
 		.order("currentPrice ASC")
 		.group("title")
-		.limit(DEALS_PER_PAGE)
-		.offset(DEALS_PER_PAGE * (page_number - 1))
+		.limit(number_of_deals)
+		.offset(number_of_deals * (page_number - 1))
 	end
 
 
-	def self.get_deal_with_category_and_city(category, city, page_number)
+	def self.get_deal_with_category_and_city(category, city, page_number, number_of_deals)
 		where(:category_id => category, 
 			:city_id => city)
 		.order("discount DESC")
 		.group("title")
-		.limit(DEALS_PER_PAGE)
-		.offset(DEALS_PER_PAGE * (page_number-1))
+		.limit(number_of_deals)
+		.offset(number_of_deals * (page_number-1))
 	end
 
 	def self.get_deal_with_id(id)
