@@ -16,7 +16,7 @@
 	width: auto;
 	text-align: center;
 	height: 60px;
-	font-size: 30px;
+	font-size: 18px;
 
 	-moz-box-shadow: 0 0 5px #888;
 	-webkit-box-shadow: 0 0 5px#888;
@@ -79,6 +79,15 @@
 	text-align: left;
 }
 
+#deal-desc-text img {
+	display: none;				/* Hide all description images for now */
+}
+
+.deal-navbar span {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 </style>
 
 
@@ -98,7 +107,23 @@
 	</div>
 
 	<div class="deal-navbar">
-		Buttons goes here
+		<span id="deal-price">
+			Price: 
+			<%= @data.deal.currentPrice %>
+		</span>
+		<span id="deal-discount">
+			Discount:
+			<%= @data.deal.discount %>
+		</span>
+		<span id="deal-timeleft">
+			Time Ends:
+			<%= @data.deal.timeEnds %>
+		</span>
+		<span id="deal-link">
+			<a href="<%= @data.deal.link %>" id="grab-deal-button" target="_blank">
+				Grab Deal!
+			</a>
+		</span>
 	</div>
 
 	<div class="deal-desc">

@@ -30,12 +30,7 @@ jQuery ->
 					scrollTop: $("#dealContainer-#{event.data.cat}").offset().top - 120
 				}, 600
 	
-
 	$('#submit-location').on 'click', ()->
 		#console.log $('#location-dropdown').val()
 		$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
 		$.fancybox.close()
-
-	#for category_id, category_name in deal_categories
-		#Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), category_id
-		#$("#deals-container").append(Dealchan.Pages.DealContainer.template)

@@ -6,7 +6,7 @@ class Dealchan.Layouts.DealContainer
 	this.showMoreDeals = (element, api_url, category_id, category_name)->
 		console.log api_url
 
-		$.getJSON "api/v0/deals/by_five.json?city=3&category=#{category_id}", (data)->
+		$.getJSON "api/v0/deals/by_five.json?city=1&category=#{category_id}", (data)->
 			#console.log data['deals']
 			this.template = JST["templates/layouts/deal_grid"]
 			
@@ -17,10 +17,9 @@ class Dealchan.Layouts.DealContainer
 			}
 			element.append(@template(template_data))
 
-# Testing out an approach above, revert back the below code if fail			
-#
-#			$.each data['deals'], (key, val)->
-#				# anonymous function problem here, this is a hack
-#				this.dealGridTemplate = JST["templates/layouts/deal_grid"]
-#				#console.log key, val
-#				element.append( @dealGridTemplate(val) )
+			for singleDeal in data['deals']
+				deal_id = singleDeal['deal']['id']
+				console.log "#deal-id-#{deal_id}"
+				$("#deal-id-#{deal_id}").on 'click',{ id : deal_id }, (event)->
+					Dealchan.Layouts.ShowDealPopover.displayPopover event.data.id
+					console.log event.data.id
