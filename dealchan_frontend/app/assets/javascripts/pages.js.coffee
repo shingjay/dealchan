@@ -18,12 +18,27 @@ jQuery ->
 	)
 
 	# Manual work 
-	deal_categories = {	"1":"Activities & Events",
-	"2":"Food & Drinks",
-	"3":"Health & Beauty",
-	"4":"Shopping & Services",
-	"5":"Travel",
-	"6":"Miscellaneous"}
+	deal_categories = 
+		"1":"Activities & Events"
+		"2":"Food & Drinks"
+		"3":"Health & Beauty"
+		"4":"Shopping & Services"
+		"5":"Travel"
+		"6":"Miscellaneous"
+
+	#window.count = 0
+
+	window.pageCount = [
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1
+	]
+
+	#console.log window.pageCount[0]
 
 	# Dynamically attach event handlers to click events
 	for category_id, category_name of deal_categories

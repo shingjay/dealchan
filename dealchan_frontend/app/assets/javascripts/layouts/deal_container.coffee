@@ -4,7 +4,12 @@ class Dealchan.Layouts.DealContainer
 
 	this.showMoreDeals = (element, api_url, category_id, category_name)->
 		console.log api_url
-		$.getJSON "api/v0/deals/by_category.json?page=2&city=4&category=#{category_id}", (data)->
+
+		pageNumber = window.pageCount[category_id]
+		window.pageCount[category_id]++
+		#console.log window.pageCount[category_id]
+
+		$.getJSON "api/v0/deals/by_category.json?page=#{pageNumber}&city=4&category=#{category_id}", (data)->
 			console.log data['deals']
 			
 			this.template = JST["templates/layouts/deal_grid"]
@@ -23,4 +28,3 @@ class Dealchan.Layouts.DealContainer
 				$("#deal-id-#{deal_id}").on 'click',{ id : deal_id }, (event)->
 					console.log event.data.id
 					Dealchan.Layouts.ShowDealPopover.displayPopover event.data.id
-					
