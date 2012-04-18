@@ -1,9 +1,13 @@
 class PagesController < ApplicationController
 
-	def index
+	def category
 
 		@deal_title = "Title goes here"
 		@deal_desc = "Description goes here"
+
+	end
+
+	def price
 
 	end
 
