@@ -44,12 +44,11 @@
 	</div>
 
 	<div>
+
 		<select id="location-dropdown">
-			<option value="Kuala Lumpur">Kuala Lumpur</option>
-			<option value="Petaling Jaya">PetalingJaya</option>
-			<option value="Cheras">Cheras</option>
-			<option value="Subang Jaya">Subang Jaya</option>
-			<option value="Bandar Sunway">Bandar Sunway</option>
+			<% for c in @cities: %>
+				<option value="<%= c.city.id %>"><%= c.city.name %></option>
+			<% end %>
 		</select>
 
 		<input type="submit" id="submit-location" value="submit">

@@ -4,10 +4,13 @@
 
 jQuery ->
 	if not $.cookie('selected_location')	
-		Dealchan.Layouts.CityAskModal.cityAskModal("#city-selection-modal")
+		Dealchan.Layouts.CityAskModal.cityAskModal ()->
+			$('#submit-location').on 'click', ()->
+				console.log $('#location-dropdown').val()
+				$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
+				$.fancybox.close()
 	
 	# Trigger City Selection Modal
-	$("#city-selection-modal").trigger('click')
 
 	# Sidebar implementation
 	$('#jump-to-shortcut a').stop().animate {
@@ -101,7 +104,4 @@ jQuery ->
 	#				scrollTop: $("#deal-container-#{event.data.cat}").offset().top - 120
 	#			}, 600
 	
-	$('#submit-location').on 'click', ()->
-		#console.log $('#location-dropdown').val()
-		$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
-		$.fancybox.close()
+	
