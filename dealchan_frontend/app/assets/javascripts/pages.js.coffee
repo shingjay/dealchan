@@ -67,6 +67,8 @@ jQuery ->
 
 	# Determine if we are sorting by price or category
 
+	city_selected = $.cookie('selected_location')
+
 	# We are sorting by price
 	if window.page_type is 'price'
 		
@@ -79,7 +81,7 @@ jQuery ->
 
 			initialize_api_url = "/api/v0/deals/by_price_range.json?" + 
 				"page=#{pageNumber}" + 
-				"&city=3&min_price=#{sort_object['min_price']}" + 
+				"&city=#{city_selected}&min_price=#{sort_object['min_price']}" + 
 				"&max_price=#{sort_object['max_price']}"
 
 			Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), initialize_api_url, sort_id, sort_object, (sort_id, sort_object)->
@@ -92,7 +94,7 @@ jQuery ->
 
 					show_more_api_url = "/api/v0/deals/by_price_range.json?" + 
 						"page=#{pageNumber}" + 
-						"&city=3&min_price=#{sort_object['min_price']}" + 
+						"&city=#{city_selected}&min_price=#{sort_object['min_price']}" + 
 						"&max_price=#{sort_object['max_price']}"
 
 					Dealchan.Layouts.DealContainer.showMoreDeals $("#deal-container-#{event.data.cat}"), show_more_api_url, sort_id, sort_object
@@ -117,7 +119,7 @@ jQuery ->
 
 			initialize_api_url = "/api/v0/deals/by_category.json?" +
 				"page=#{pageNumber}" + 
-				"&city=3" + 
+				"&city=#{city_selected}" + 
 				"&category=#{sort_id}"
 
 			Dealchan.Pages.DealContainer.initializeDeals $("#deals-container"), initialize_api_url, sort_id, sort_object, (sort_id, sort_object)->
@@ -130,7 +132,7 @@ jQuery ->
 
 					show_more_api_url = "/api/v0/deals/by_category.json?" +
 						"page=#{pageNumber}" + 
-						"&city=3" + 
+						"&city=#{city_selected}" + 
 						"&category=#{sort_id}"
 
 					Dealchan.Layouts.DealContainer.showMoreDeals $("#deal-container-#{event.data.cat}"), show_more_api_url, sort_id, sort_object
