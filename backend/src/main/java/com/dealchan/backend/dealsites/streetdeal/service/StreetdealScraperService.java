@@ -4,6 +4,7 @@ import com.dealchan.backend.dealsites.DealSiteService;
 import com.dealchan.backend.dealsites.streetdeal.entity.StreetdealDeal;
 import com.dealchan.backend.dealsites.streetdeal.repository.StreetdealRepository;
 import com.dealchan.backend.utils.web.CustomWebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
@@ -99,7 +100,7 @@ public class StreetdealScraperService implements DealSiteService{
                     }
                 }
             }
-            //streetdealDeal.setDiscount();
+            streetdealDeal.setAddress("Kuala Lumpur");
             deals.add(streetdealDeal);
 
         }
@@ -111,12 +112,6 @@ public class StreetdealScraperService implements DealSiteService{
 //        StreetdealScraperService service = new StreetdealScraperService();
 //        service.setCustomWebClient(webClient1);
 //        service.scrap();
-        
-        long value = 1334246400L;
-        
-        Date date = new Date(value * 1000);
-        SimpleDateFormat format = new SimpleDateFormat();
-        System.out.println(format.format(date));
 
     }
 
