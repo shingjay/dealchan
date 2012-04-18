@@ -15,7 +15,7 @@ class DealsController < ApplicationController
 		if params[:page].to_i == 1
 			number_of_deals = 5
 		elsif params[:page].to_i >= 2
-			number_of_deals = 3
+			number_of_deals = 5
 		end
 
 		@deals = Deal.get_deal_with_price_range_and_city(params[:min_price].to_f, 
@@ -34,7 +34,7 @@ class DealsController < ApplicationController
 		if params[:page].to_i == 1
 			number_of_deals = 5
 		elsif params[:page].to_i >= 2
-			number_of_deals = 3
+			number_of_deals = 5
 		end
 
 		@deals = Deal.get_deal_with_category_and_city(params[:category].to_i, 
