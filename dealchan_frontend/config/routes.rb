@@ -1,7 +1,8 @@
 DealchanFrontend::Application.routes.draw do
 
-  root :to => 'pages#index' # matches root and routes it to the index action in the Pages controller.
-
+  root :to => 'pages#category' # matches root and routes it to the index action in the Pages controller.
+  get '/category' => 'pages#category', :as => "category"
+  get '/price' => 'pages#price', :as => "price"
 
   # 
   # api/v0/deals/by_price_range.json?min_price=10&max_price=60&page=1&city=1
