@@ -12,6 +12,7 @@ DealchanFrontend::Application.routes.draw do
     get "/deals/by_price_range(.:format)" => 'deals#get_deals_by_price_range'
     get "/deals/by_category(.:format)" => 'deals#get_deals_by_category'
     get "/deals/by_id(.:format)" => 'deals#get_deal_by_id'
+    get "/cities/list(.:format)" => 'cities#list_cities'
   end
 
 
