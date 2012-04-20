@@ -17,9 +17,12 @@
         <spring.version>3.1.1.RELEASE</spring.version>
         <spring.data.version>1.1.0.M1</spring.data.version>  <!-- a patch for a bug -->
         <slf4j.version>1.5.11</slf4j.version>
+        <batch.admin.version>1.2.1.RELEASE</batch.admin.version>
+        <batch.version>2.1.8.RELEASE</batch.version>
     </properties>
 
     <dependencies>
+
 
         <!-- quartz scheduler -->
         <dependency>
@@ -132,6 +135,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.18</version>
         </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.19</version>
+        </dependency>
+
+
         <dependency>
             <groupId>rome</groupId>
             <artifactId>rome</artifactId>
@@ -288,7 +298,22 @@
             <version>1.2</version>
         </dependency>
 
-
+        <!-- spring batch stuff -->
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-admin-manager</artifactId>
+            <version>${batch.admin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-infrastructure</artifactId>
+            <version>2.1.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+            <version>${batch.version}</version>
+        </dependency>
     </dependencies>
 
 
