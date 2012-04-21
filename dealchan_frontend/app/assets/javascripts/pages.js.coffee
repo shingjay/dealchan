@@ -103,7 +103,7 @@ jQuery ->
 						"&city=#{city_selected}&min_price=#{sort_object['min_price']}" + 
 						"&max_price=#{sort_object['max_price']}"
 
-					Dealchan.Layouts.DealContainer.showMoreDeals $("#deal-container-#{event.data.cat}"), show_more_api_url, sort_id, sort_object
+					Dealchan.Layouts.DealContainer.showMoreDeals $("#deal-container-#{event.data.cat} .deal-container"), show_more_api_url, sort_id, sort_object
 				
 				$("#jump-to-#{sort_id}").on 'click', { cat : sort_id }, (event)->
 					

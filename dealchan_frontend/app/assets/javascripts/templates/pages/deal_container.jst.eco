@@ -1,3 +1,5 @@
+<div id="deal-container-<%= @category_id %>">
+
 <!-- CONTAINER LABEL -->
 <div class="grid_3 suffix_13">
 	<div class="container-label">
@@ -6,19 +8,7 @@
 </div>
 
 <!-- DEAL CONTAINER -->
-<div class="grid_16 deal-container" id="deal-container-<%= @category_id %>">
-
-	<% for deal in @data.deals: %>
-		<div class="grid_3 deal" id="deal-id-<%= deal.deal.id %>">
-			<img src="<%= deal.deal.image %>" class="grid_3 deal-picture">
-			<div class="grid_3 deal-title">
-				<p><%= deal.deal.title[0..40] %></p>
-			</div>
-			<div class="grid_3 deal-description">
-				<p><%= deal.deal.currentPrice %></p>
-			</div>
-		</div>
-	<% end %>
+<div class="grid_16 deal-container">
 
 </div>
 
@@ -27,4 +17,6 @@
 	<div class="show-more-button" id="show-more-button-<%= @category_id %>">
 		<p>Show more...</p>
 	</div>
+</div>
+
 </div>
