@@ -36,6 +36,7 @@ class Dealchan.Pages.DealContainer
 
 			if data.deals.length is 0
 				$("#deal-container-#{category_id}").hide()
+				$("#jump-to-#{category_id}").hide()
 
 			#element.append(@template(template_data))
 			callback_function(category_id, category_name)

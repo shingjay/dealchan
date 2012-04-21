@@ -83,6 +83,18 @@ jQuery ->
 		# Dynamically attach event handlers to click events
 		for sort_id, sort_object of deal_price_ranges
 
+			# Populate quick nav
+			this.template = JST["templates/layouts/shortcut_navigation"]
+
+			template_data = {
+				category_id : sort_id
+				category_name : sort_object['label']
+			}
+
+			console.log template_data
+
+			$("#jump-to-shortcut").append(@template(template_data))
+
 			pageNumber = window.pageCount[sort_id]
 
 			initialize_api_url = "/api/v0/deals/by_price_range.json?" + 
@@ -108,9 +120,11 @@ jQuery ->
 				$("#jump-to-#{sort_id}").on 'click', { cat : sort_id }, (event)->
 					
 					console.log "jump to cat " + event.data.cat
+
+					console.log $("#deal-container-#{event.data.cat}")
 					
 					$('html,body').animate {
-						scrollTop: $("#deal-container-#{event.data.cat}").offset().top - 120
+						scrollTop: $("#deal-container-#{event.data.cat} .deal-container").offset().top - 120
 					}, 600
 
 	# We are sorting by category
@@ -120,6 +134,18 @@ jQuery ->
 
 		# Dynamically attach event handlers to click events
 		for sort_id, sort_object of deal_categories
+
+			# Populate quick nav
+			this.template = JST["templates/layouts/shortcut_navigation"]
+
+			template_data = {
+				category_id : sort_id
+				category_name : sort_object['label']
+			}
+
+			console.log template_data
+
+			$("#jump-to-shortcut").append(@template(template_data))
 
 			pageNumber = window.pageCount[sort_id]
 
@@ -141,13 +167,13 @@ jQuery ->
 						"&city=#{city_selected}" + 
 						"&category=#{sort_id}"
 
-					Dealchan.Layouts.DealContainer.showMoreDeals $("#deal-container-#{event.data.cat}"), show_more_api_url, sort_id, sort_object
+					Dealchan.Layouts.DealContainer.showMoreDeals $("#deal-container-#{event.data.cat} .deal-container"), show_more_api_url, sort_id, sort_object
 				
 				$("#jump-to-#{sort_id}").on 'click', { cat : sort_id }, (event)->
 					
 					console.log "jump to cat " + event.data.cat
 					
 					$('html,body').animate {
-						scrollTop: $("#deal-container-#{event.data.cat}").offset().top - 120
+						scrollTop: $("#deal-container-#{event.data.cat} .deal-container").offset().top - 120
 					}, 600
 	
