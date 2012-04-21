@@ -14,7 +14,7 @@ class Dealchan.Pages.DealContainer
 			template_data = {
 				data : data
 				category_id : category_id
-				category_name : category_name
+				category_name : category_name['label']
 			}
 			
 			element.append(@template(template_data))

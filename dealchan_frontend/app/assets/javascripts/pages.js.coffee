@@ -22,12 +22,18 @@ jQuery ->
 
 	# Manual work 
 	deal_categories = 
-		"1":"Activities & Events"
-		"2":"Food & Drinks"
-		"3":"Health & Beauty"
-		"4":"Shopping & Services"
-		"5":"Travel"
-		"6":"Miscellaneous"
+		"1":
+			"label": "Activities & Events"
+		"2":
+			"label": "Food & Drinks"
+		"3":
+			"label": "Health & Beauty"
+		"4":
+			"label": "Shopping & Services"
+		"5":
+			"label": "Travel"
+		"6":
+			"label": "Miscellaneous"
 
 	deal_price_ranges = 
 		"1":
@@ -35,24 +41,24 @@ jQuery ->
 			"min_price":0, 
 			"max_price":10
 		"2":
-			"label": "RM11 - RM50", 
-			"min_price":11, 
+			"label": "RM10 - RM50", 
+			"min_price":10, 
 			"max_price":50
 		"3":
-			"label": "RM51 - RM100", 
-			"min_price":51, 
+			"label": "RM50 - RM100", 
+			"min_price":50, 
 			"max_price":100
 		"4":
-			"label": "RM101 - RM500", 
-			"min_price":101, 
+			"label": "RM100 - RM500", 
+			"min_price":100, 
 			"max_price":500
 		"5":
-			"label": "RM501 - RM1000", 
-			"min_price":501, 
+			"label": "RM500 - RM1000", 
+			"min_price":500, 
 			"max_price":1000
 		"6":
-			"label": "RM1001+", 
-			"min_price":1001, 
+			"label": "RM1000+", 
+			"min_price":1000, 
 			"max_price":''
 
 	window.pageCount = [
