@@ -1,0 +1,5 @@
+<select id="cities-dropdown">
+	<% for c in @cities: %>
+		<option value="<%= c.city.id %>"><%= c.city.name %></option>
+	<% end %>
+</select>

@@ -3,12 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-	if not $.cookie('selected_location')	
-		Dealchan.Layouts.CityAskModal.cityAskModal ()->
-			$('#submit-location').on 'click', ()->
-				console.log $('#location-dropdown').val()
-				$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
-				$.fancybox.close()
+	Dealchan.Layouts.CityAskModal.cityAskModal $.cookie('selected_location'), ()->
+		$('#submit-location').on 'click', ()->
+			console.log $('#location-dropdown').val()
+			$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
+			$.fancybox.close()
+		$('#cities-dropdown').on 'change', ()->
+			$.cookie('selected_location', $('#cities-dropdown').val(),  { expires: 1200 })
+			location.reload()
 	
 	# Trigger City Selection Modal
 
