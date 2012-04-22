@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/task"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <job id="grouponKlang" xmlns="http://www.springframework.org/schema/batch">
+        <step id="step" parent="step1" />
+    </job>
+
+    <step id="step1" xmlns="http://www.springframework.org/schema/batch">
+        <tasklet start-limit="100">
+            <chunk commit-interval="1" reader="itemReader" processor="grouponProcessor" writer="itemWriter"  />
+        </tasklet>
+    </step>
+
+    <bean id="itemWriter" class="com.dealchan.backend.batch.RSSWriter">
+        <property name="dealSourceRepository" ref="dealSourceRepository" />
+    </bean>
+
+    <bean id="dealSourceAdapter" class="com.dealchan.backend.dealsource.adapter.DealSourceAdapterImpl" />
+
+    <bean id="grouponProcessor" class="com.dealchan.backend.batch.GrouponProcessor">
+        <property name="dealSourceAdapter" ref="dealSourceAdapter" />
+    </bean>
+
+    <bean id="itemReader" class="com.dealchan.backend.batch.RSSReader" scope="step">
+        <constructor-arg value="http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur"/>
+        <property name="webClient" ref="customWebClientImpl" />
+    </bean>
+
+
+</beans>

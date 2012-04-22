@@ -4,6 +4,7 @@ import com.dealchan.backend.dealsource.adapter.DealSourceAdapter;
 import com.dealchan.backend.dealsource.entity.DealSource;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.w3c.dom.Node;
 
 /**
@@ -15,12 +16,17 @@ import org.w3c.dom.Node;
  */
 public class GrouponProcessor implements ItemProcessor<Node,DealSource> {
 
-    @Autowired
+
     private DealSourceAdapter dealSourceAdapter;
+
+    @Autowired
+    public void setDealSourceAdapter(@Qualifier("dealSourceAdapter") DealSourceAdapter dealSourceAdapter) {
+        this.dealSourceAdapter = dealSourceAdapter;
+    }
 
     @Override
     public DealSource process(Node node) throws Exception {
-
+        System.out.println("PROCESSING " + node.toString());
         DealSource dealSource = new DealSource();
         dealSource.setCountry("MALAYSIA");
         dealSource.setTitle("AWESOME");

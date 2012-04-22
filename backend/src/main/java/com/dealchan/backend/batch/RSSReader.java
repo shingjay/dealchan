@@ -21,7 +21,7 @@ public class RSSReader implements ItemReader<Node> {
 
     private String url;
 
-    @Autowired
+
     private CustomWebClient webClient;
 
     private Document document;
@@ -32,16 +32,22 @@ public class RSSReader implements ItemReader<Node> {
 
     public RSSReader(String url) {
         this.url = url;
+    }
+
+    @Autowired
+    public void setWebClient(CustomWebClient webClient1) {
+        this.webClient = webClient1;
         this.document = webClient.getPageAsXml(url);
         this.nodeList =  document.getElementsByTagName("item");
         this.index = 0;
         this.length = nodeList.getLength();
+
     }
 
 
     @Override
     public Node read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-
+        System.out.println("READING NodeList : " + nodeList.item(index));
         if(index == length) {
             return null;
         }

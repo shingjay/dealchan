@@ -4,6 +4,7 @@ import com.dealchan.backend.dealsource.entity.DealSource;
 import com.dealchan.backend.dealsource.repository.DealSourceRepository;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 
@@ -16,11 +17,23 @@ import java.util.List;
  */
 public class RSSWriter implements ItemWriter<DealSource> {
 
-    @Autowired
+
     private DealSourceRepository dealSourceRepository;
+
+    @Autowired
+    public void setDealSourceRepository(@Qualifier("dealSourceRepository") DealSourceRepository dealSourceRepository) {
+        this.dealSourceRepository = dealSourceRepository;
+    }
 
     @Override
     public void write(List<? extends DealSource> dealSources) throws Exception {
-        dealSourceRepository.save(dealSources);
+
+        try {
+            System.out.println("WRITING : " + dealSources.toString());
+            dealSourceRepository.save(dealSources);
+            dealSourceRepository.flush();
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

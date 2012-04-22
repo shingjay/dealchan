@@ -167,27 +167,28 @@ public class DealSource {
         this.title = title;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof DealSource)) return false;
 
-        DealSource that = (DealSource) o;
+        DealSource source = (DealSource) o;
 
-        if (Double.compare(that.discount, discount) != 0) return false;
-        if (Double.compare(that.originalPrice, originalPrice) != 0) return false;
-        if (Double.compare(that.price, price) != 0) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (category != null ? !category.equals(that.category) : that.category != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (country != null ? !country.equals(that.country) : that.country != null) return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (dealEnds != null ? !dealEnds.equals(that.dealEnds) : that.dealEnds != null) return false;
-        if (dealUlr != null ? !dealUlr.equals(that.dealUlr) : that.dealUlr != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (!id.equals(that.id)) return false;
-        if (imageUrl != null ? !imageUrl.equals(that.imageUrl) : that.imageUrl != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (Double.compare(source.discount, discount) != 0) return false;
+        if (Double.compare(source.originalPrice, originalPrice) != 0) return false;
+        if (Double.compare(source.price, price) != 0) return false;
+        if (address != null ? !address.equals(source.address) : source.address != null) return false;
+        if (category != null ? !category.equals(source.category) : source.category != null) return false;
+        if (city != null ? !city.equals(source.city) : source.city != null) return false;
+        if (country != null ? !country.equals(source.country) : source.country != null) return false;
+        if (createdAt != null ? !createdAt.equals(source.createdAt) : source.createdAt != null) return false;
+        if (dealEnds != null ? !dealEnds.equals(source.dealEnds) : source.dealEnds != null) return false;
+        if (dealUlr != null ? !dealUlr.equals(source.dealUlr) : source.dealUlr != null) return false;
+        if (description != null ? !description.equals(source.description) : source.description != null) return false;
+        if (id != null ? !id.equals(source.id) : source.id != null) return false;
+        if (imageUrl != null ? !imageUrl.equals(source.imageUrl) : source.imageUrl != null) return false;
+        if (title != null ? !title.equals(source.title) : source.title != null) return false;
 
         return true;
     }
@@ -196,7 +197,7 @@ public class DealSource {
     public int hashCode() {
         int result;
         long temp;
-        result = id.hashCode();
+        result = id != null ? id.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         temp = price != +0.0d ? Double.doubleToLongBits(price) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -215,5 +216,4 @@ public class DealSource {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
-
 }
