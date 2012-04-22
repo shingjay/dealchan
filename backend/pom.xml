@@ -23,6 +23,46 @@
 
     <dependencies>
 
+        <!-- spring stuff -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+
 
         <!-- quartz scheduler -->
         <dependency>
@@ -204,33 +244,6 @@
         </dependency>
 
 
-        <!-- spring stuff -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>cglib</groupId>
@@ -298,6 +311,7 @@
             <version>1.2</version>
         </dependency>
 
+
         <!-- spring batch stuff -->
         <dependency>
             <groupId>org.springframework.batch</groupId>
@@ -306,14 +320,23 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-admin-resources</artifactId>
+            <version>${batch.admin.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-infrastructure</artifactId>
-            <version>2.1.8.RELEASE</version>
+            <version>${batch.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.batch</groupId>
             <artifactId>spring-batch-core</artifactId>
             <version>${batch.version}</version>
         </dependency>
+
+
     </dependencies>
 
 
@@ -334,6 +357,18 @@
             <name>JBoss repository</name>
             <url>http://repository.jboss.org/maven2</url>
         </repository>
+
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Maven Snapshot Repository</name>
+            <url>http://maven.springframework.org/snapshot</url>
+        </repository>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring Maven release Repository</name>
+            <url>http://maven.springframework.org/release</url>
+        </repository>
+
 
     </repositories>
 
