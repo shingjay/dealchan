@@ -47,7 +47,7 @@ public class RSSReader implements ItemReader<Node> {
 
     @Override
     public Node read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-        System.out.println("READING NodeList : " + nodeList.item(index));
+        System.out.println("READING NodeList : " + index + " : " + nodeList.item(index));
         if(index == length) {
             return null;
         }
