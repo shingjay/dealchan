@@ -31,7 +31,7 @@ public class RSSWriter implements ItemWriter<DealSource> {
         try {
             System.out.println("WRITING : " + dealSources.toString());
             dealSourceRepository.save(dealSources);
-            dealSourceRepository.flush();
+            //dealSourceRepository.flush();
         }catch (Exception ex) {
             ex.printStackTrace();
         }

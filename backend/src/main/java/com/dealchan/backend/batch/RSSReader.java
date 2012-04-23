@@ -1,6 +1,8 @@
 package com.dealchan.backend.batch;
 
 import com.dealchan.backend.utils.web.CustomWebClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
@@ -30,6 +32,8 @@ public class RSSReader implements ItemReader<Node> {
     private int index;
     private NodeList nodeList;
 
+    private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+
     public RSSReader(String url) {
         this.url = url;
     }
@@ -42,6 +46,7 @@ public class RSSReader implements ItemReader<Node> {
         this.index = 0;
         this.length = nodeList.getLength();
 
+        System.err.println("DEADB33F length: " + length);
     }
 
 
