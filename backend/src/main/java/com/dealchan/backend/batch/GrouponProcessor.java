@@ -26,10 +26,24 @@ public class GrouponProcessor implements ItemProcessor<Node,DealSource> {
 
     @Override
     public DealSource process(Node node) throws Exception {
+
+//        NodeList nodelist = node.getChildNodes();
+//
+//        for(int j = 0; j < list.getLength(); j++) {
+//            //contents of item
+//            if(child.item(j) instanceof Element) {
+//
+//            }
+//        }
+
+
         System.out.println("PROCESSING " + node.toString());
         DealSource dealSource = new DealSource();
         dealSource.setCountry("MALAYSIA");
         dealSource.setTitle("AWESOME");
+        dealSource.setDiscount(10.0);
+        dealSource.setOriginalPrice(11.0);
+        dealSource.setPrice(12.0);
         return dealSource;
 // return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

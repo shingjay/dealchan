@@ -10,12 +10,13 @@
     <context:component-scan base-package="com.dealchan.backend">
         <context:exclude-filter type="assignable" expression="com.dealchan.backend.config.core.MvcConfig" />
     </context:component-scan>
-    <jpa:repositories base-package="com.dealchan.backend" />
+    <jpa:repositories base-package="com.dealchan.backend" transaction-manager-ref="customTXM" entity-manager-factory-ref="customEMF" />
+
+
 
     <bean id="resourceService"
           class="org.springframework.batch.admin.web.resources.DefaultResourceService">
         <property name="servletPath" value="/batch" />
     </bean>
-
 
 </beans>

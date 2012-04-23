@@ -11,6 +11,7 @@ import java.util.Calendar;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Table(name = "awesome_deals")
 public class DealSource {
 
     @Id

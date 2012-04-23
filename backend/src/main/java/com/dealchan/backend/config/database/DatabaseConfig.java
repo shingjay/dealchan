@@ -1,6 +1,7 @@
 package com.dealchan.backend.config.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -31,14 +32,14 @@ public class DatabaseConfig implements TransactionManagementConfigurer {
     @Autowired
     DataSource dataSource;
 
-    @Bean
+    @Bean(name = "customTXM")
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getNativeEntityManagerFactory());
         return transactionManager;
     }
 
-    @Bean
+    @Bean(name = "customEMF")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setPackagesToScan("com.dealchan.backend");
