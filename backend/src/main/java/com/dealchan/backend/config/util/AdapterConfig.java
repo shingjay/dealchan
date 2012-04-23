@@ -75,7 +75,7 @@ public class AdapterConfig {
         return grouponMappingProperties;
     }
 
-    @Bean
+    @Bean(name = "customAdapter")
     public DealSourceAdapterImpl dealSourceAdapter() {
         DealSourceAdapterImpl adapter = new DealSourceAdapterImpl();
 

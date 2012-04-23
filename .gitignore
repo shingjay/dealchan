@@ -2,3 +2,6 @@
 backend/target/*
 *.iml
 .DS_Store
+backend/src/main/resources/batch-mysql.properties
+
+backend/src/main/resources/batch-mysql.properties
