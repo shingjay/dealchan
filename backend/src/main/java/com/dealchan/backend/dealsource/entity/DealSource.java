@@ -1,6 +1,7 @@
 package com.dealchan.backend.dealsource.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
@@ -27,18 +28,18 @@ public class DealSource {
     @Lob
     private String description;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar dealEnds;
+    //@Temporal(TemporalType.TIMESTAMP)
+    private Timestamp dealEnds;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar createdAt;
+    //@Temporal(TemporalType.TIMESTAMP)
+    private Timestamp createdAt;
 
     @Lob
     private String address;
     @Lob
     private String imageUrl;
     @Lob
-    private String dealUlr;
+    private String dealUrl;
     
     private String category;
     
@@ -48,7 +49,7 @@ public class DealSource {
 
     @PrePersist
     protected void onCreate() {
-        createdAt = Calendar.getInstance();
+        createdAt = new Timestamp(Calendar.getInstance().getTimeInMillis());
     }
 
     @PreUpdate
@@ -88,28 +89,28 @@ public class DealSource {
         this.country = country;
     }
 
-    public Calendar getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Calendar createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Calendar getDealEnds() {
+    public Timestamp getDealEnds() {
         return dealEnds;
     }
 
-    public void setDealEnds(Calendar dealEnds) {
+    public void setDealEnds(Timestamp dealEnds) {
         this.dealEnds = dealEnds;
     }
 
-    public String getDealUlr() {
-        return dealUlr;
+    public String getDealUrl() {
+        return dealUrl;
     }
 
-    public void setDealUlr(String dealUlr) {
-        this.dealUlr = dealUlr;
+    public void setDealUrl(String dealUrl) {
+        this.dealUrl = dealUrl;
     }
 
     public String getDescription() {
@@ -185,7 +186,7 @@ public class DealSource {
         if (country != null ? !country.equals(source.country) : source.country != null) return false;
         if (createdAt != null ? !createdAt.equals(source.createdAt) : source.createdAt != null) return false;
         if (dealEnds != null ? !dealEnds.equals(source.dealEnds) : source.dealEnds != null) return false;
-        if (dealUlr != null ? !dealUlr.equals(source.dealUlr) : source.dealUlr != null) return false;
+        if (dealUrl != null ? !dealUrl.equals(source.dealUrl) : source.dealUrl != null) return false;
         if (description != null ? !description.equals(source.description) : source.description != null) return false;
         if (id != null ? !id.equals(source.id) : source.id != null) return false;
         if (imageUrl != null ? !imageUrl.equals(source.imageUrl) : source.imageUrl != null) return false;
@@ -211,7 +212,7 @@ public class DealSource {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
-        result = 31 * result + (dealUlr != null ? dealUlr.hashCode() : 0);
+        result = 31 * result + (dealUrl != null ? dealUrl.hashCode() : 0);
         result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);

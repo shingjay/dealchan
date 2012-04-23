@@ -1,12 +1,13 @@
 package com.dealchan.backend.config.util;
 
+import com.dealchan.backend.dealsites.groupon.entity.GrouponDeal;
 import com.dealchan.backend.dealsource.adapter.DealSourceAdapterImpl;
 import com.dealchan.backend.dealsource.repository.DealSourceRepository;
-import com.dealchan.backend.utils.web.CustomWebClient;
-import com.dealchan.backend.utils.web.CustomWebClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Properties;
 
 
 /**
@@ -22,9 +23,65 @@ public class AdapterConfig {
     @Autowired
     private DealSourceRepository dealSourceRepository;
 
+    //src
+    /*private long id;
+    private String title;
+    private String link;
+    private String description;
+    private Date pubDate;
+    private String city;
+    private String country;
+    private double currentPrice;
+    private double discount;
+    private double saving;
+    private double originalPrice;
+    private Timestamp timeEnds;
+    private String extraInformation;
+    private boolean active;
+    private int bought;
+    private String image;
+    private String address;*/
+
+    //dest
+    /*private Long id;
+    private String title;
+    private double price;
+    private double discount;
+    private double originalPrice;
+    private String description;
+    private Timestamp dealEnds;
+    private Timestamp createdAt;
+    private String address;
+    private String imageUrl;
+    private String dealUrl;
+    private String category;
+    private String city;
+    private String country;*/
+
+    private Properties getGrouponMappingProperties()
+    {
+        Properties grouponMappingProperties = new Properties();
+        grouponMappingProperties.setProperty("title", "title");
+        grouponMappingProperties.setProperty("currentPrice", "price");
+        grouponMappingProperties.setProperty("discount", "discount");
+        grouponMappingProperties.setProperty("originalPrice", "originalPrice");
+        grouponMappingProperties.setProperty("description", "description");
+        grouponMappingProperties.setProperty("timeEnds", "dealEnds");
+        grouponMappingProperties.setProperty("address", "address");
+        grouponMappingProperties.setProperty("image", "imageUrl");
+        grouponMappingProperties.setProperty("link", "dealUrl");
+        grouponMappingProperties.setProperty("city", "city");
+        grouponMappingProperties.setProperty("country", "country");
+        return grouponMappingProperties;
+    }
+
     @Bean
     public DealSourceAdapterImpl dealSourceAdapter() {
         DealSourceAdapterImpl adapter = new DealSourceAdapterImpl();
+
+        Properties grouponMappingProperties = getGrouponMappingProperties();
+        adapter.addCustomMapping(GrouponDeal.class, grouponMappingProperties);
+
         return adapter;
     }
 //

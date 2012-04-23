@@ -24,7 +24,9 @@
     <bean id="dealSourceAdapter" class="com.dealchan.backend.dealsource.adapter.DealSourceAdapterImpl" />
 
     <bean id="grouponProcessor" class="com.dealchan.backend.batch.GrouponProcessor">
+        <constructor-arg value="http://api-asia.groupon.de/feed/api/v1/deals/oftheday/MY/klang-valley-kuala-lumpur"/>
         <property name="dealSourceAdapter" ref="dealSourceAdapter" />
+        <property name="webClient" ref="customWebClientImpl" />
     </bean>
 
     <bean id="itemReader" class="com.dealchan.backend.batch.RSSReader" scope="step">
