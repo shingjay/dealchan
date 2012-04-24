@@ -18,9 +18,12 @@ class DealsController < ApplicationController
 			number_of_deals = 5
 		end
 
+		selected_city = City.where(:id => params[:city].to_i).first
+		travel_city = City.where(:name => 'Travel', :country => selected_city.country).first
+
 		@deals = Deal.get_deal_with_price_range_and_city(params[:min_price].to_f, 
 															params[:max_price].to_f, 
-															params[:city].to_i, 
+															[params[:city].to_i, travel_city.id], 
 															params[:page].to_i,
 															number_of_deals
 															)
@@ -37,8 +40,16 @@ class DealsController < ApplicationController
 			number_of_deals = 5
 		end
 
+		city_id_to_use = params[:city].to_i
+
+		if params[:category].to_i == 5
+			selected_city = City.where(:id => params[:city].to_i).first
+			travel_city = City.where(:name => 'Travel', :country => selected_city.country).first
+			city_id_to_use = travel_city.id
+		end
+
 		@deals = Deal.get_deal_with_category_and_city(params[:category].to_i, 
-														params[:city].to_i, 
+														city_id_to_use, 
 														params[:page].to_i,
 														number_of_deals)
 	end

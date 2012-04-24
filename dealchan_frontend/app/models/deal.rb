@@ -39,7 +39,7 @@ class Deal < ActiveRecord::Base
 	def self.get_deal_with_category_and_city(category, city, page_number, number_of_deals)
 		where(:category_id => category, 
 			:city_id => city)
-		.order("discount DESC")
+		.order("currentPrice ASC")
 		.group("title")
 		.limit(number_of_deals)
 		.offset(number_of_deals * (page_number-1))
