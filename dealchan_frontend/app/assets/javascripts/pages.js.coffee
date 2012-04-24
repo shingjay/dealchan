@@ -8,6 +8,7 @@ jQuery ->
 			console.log $('#location-dropdown').val()
 			$.cookie('selected_location', $('#location-dropdown').val(),  { expires: 1200 })
 			$.fancybox.close()
+			location.reload()
 		$('#cities-dropdown').on 'change', ()->
 			$.cookie('selected_location', $('#cities-dropdown').val(),  { expires: 1200 })
 			location.reload()
