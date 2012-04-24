@@ -34,5 +34,36 @@
         <property name="webClient" ref="customWebClientImpl" />
     </bean>
 
+    <!-- Scheduler -->
+    <bean id="jobScheduler" class="com.dealchan.backend.scheduler.GrouponJobScheduler" />
+
+    <bean id="jobSchedulerBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="jobScheduler" />
+        <property name="targetMethod" value="schedule" />
+    </bean>
+
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+        <property name="jobDetail" ref="jobSchedulerBean" />
+        <property name="startDelay" value="3000" />
+        <property name="cronExpression" value="0 0/5 * 1/1 * ? *" />
+
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+        <property name="jobDetails">
+            <list>
+                <ref bean="jobSchedulerBean" />
+            </list>
+        </property>
+
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+            </list>
+        </property>
+    </bean>
+
 
 </beans>

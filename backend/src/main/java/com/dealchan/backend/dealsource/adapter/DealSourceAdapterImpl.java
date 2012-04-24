@@ -42,9 +42,7 @@ public class DealSourceAdapterImpl implements DealSourceAdapter, ApplicationCont
 
         // casting to TargetClassAware if it is not a BEAN!
 
-        System.err.println("XYZSv: Reached");
         if(customMapping.containsKey(object.getClass())) {
-            System.err.println("XYZSv: custommapping has groupondeal");
             Properties properties = customMapping.get(object.getClass());
             
             for(String propertyName : properties.stringPropertyNames()) {
@@ -53,7 +51,6 @@ public class DealSourceAdapterImpl implements DealSourceAdapter, ApplicationCont
                 
                 try {
                     Object sourceValue = PropertyUtils.getSimpleProperty(object, sourceMethod);
-                    System.err.println("XYZSv: " + sourceValue.toString());
                     PropertyUtils.setProperty(source,destinationMethod,sourceValue);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
