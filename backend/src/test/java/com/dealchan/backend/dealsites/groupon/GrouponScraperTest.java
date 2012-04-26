@@ -65,7 +65,7 @@ public class GrouponScraperTest {
 
 
         customWebClient.getPage("http://www.groupon.my/deals/klang-valley-kuala-lumpur/zen-korean-bbq/716003506?CID=MY_RSS_217_389_189_22&utm_source=rss_217&utm_medium=rss_389&utm_campaign=rss_189&utm_content=rss_22");
-        //Assert.fail("Fuck you");
+
     }
 
     @Test

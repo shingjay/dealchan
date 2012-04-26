@@ -4,12 +4,14 @@ import com.dealchan.backend.dealsites.DealSiteService;
 import com.dealchan.backend.dealsites.streetdeal.entity.StreetdealDeal;
 import com.dealchan.backend.dealsites.streetdeal.repository.StreetdealRepository;
 import com.dealchan.backend.utils.web.CustomWebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,7 +31,7 @@ import java.util.Locale;
  * Time: 2:44 PM
  * To change this template use File | Settings | File Templates.
  */
-
+@Service
 public class StreetdealScraperService implements DealSiteService{
 
 
@@ -40,8 +42,8 @@ public class StreetdealScraperService implements DealSiteService{
         this.webClient = webClient1;
     }
 
-    @Autowired
-    private StreetdealRepository repository;
+//    @Autowired
+//    private StreetdealRepository repository;
     
     String streetdealURL = "http://www.streetdeal.my/home/rss";
     
@@ -83,7 +85,7 @@ public class StreetdealScraperService implements DealSiteService{
 
                         Date date = null;
                         try {
-                            date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(child.item(j).getTextContent());
+                            date = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH).parse(child.item(j).getTextContent());
                         } catch (ParseException e) {
                             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                         }
@@ -100,9 +102,19 @@ public class StreetdealScraperService implements DealSiteService{
                     }
                 }
             }
-            streetdealDeal.setAddress("Kuala Lumpur");
-            deals.add(streetdealDeal);
+            streetdealDeal.setCity("Kuala Lumpur");
 
+            String temp = "";
+            HtmlPage htmlPage = (HtmlPage)webClient.getPage(streetdealDeal.getLink());
+            HtmlElement element = (HtmlElement) htmlPage.getByXPath("/html/body/div[3]/div[2]/div[2]/div/div/div/div[6]/div[2]/div[2]/p").get(0);
+
+            Iterable<HtmlElement> elements = element.getChildElements();
+            for(HtmlElement e : elements) {
+                element.removeChild(e);
+            }
+            streetdealDeal.setAddress(temp + element.asText());
+            //System.out.println("address" + streetdealDeal.getAddress());
+            deals.add(streetdealDeal);
         }
         return null;
     }
