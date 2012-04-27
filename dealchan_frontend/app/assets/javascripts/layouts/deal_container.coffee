@@ -8,8 +8,6 @@ class Dealchan.Layouts.DealContainer
 
 		$.getJSON api_url, (data)->
 			
-			console.log data['deals']
-			
 			this.template = JST["templates/layouts/deal_grid"]
 			
 			template_data = {
@@ -21,13 +19,6 @@ class Dealchan.Layouts.DealContainer
 			element.append(@template(template_data))
 
 			for singleDeal in data['deals']
-				
 				deal_id = singleDeal['deal']['id']
-				
-				console.log "#deal-id-#{deal_id}"
-				
 				$("#deal-id-#{deal_id}").on 'click',{ id : deal_id }, (event)->
-					
-					console.log event.data.id
-					
 					Dealchan.Layouts.ShowDealPopover.displayPopover event.data.id

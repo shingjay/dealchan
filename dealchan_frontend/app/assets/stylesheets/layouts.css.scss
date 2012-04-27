@@ -37,10 +37,11 @@ ul#jump-to-shortcut li {
 ul#jump-to-shortcut li a {
 	text-align: right;		/* custom */
 	padding-right: 20px;	/* custom */
+	font-size: 90%;
     display: block;
     margin-left: -2px;
     width: 100px;
-    height: 50px;    
+    height: 40px;    
     background-color:#CFCFCF;
     background-repeat:no-repeat;
     background-position:center center;
@@ -232,10 +233,14 @@ body {
 ------------------------------------------------------------------*/
 .container-label {
 	margin-top: 25px;
-	border: solid 1px;
+	border: solid 1px #888;
 	text-align: center;
 	height: 20px;
 	width: auto;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
 }
 
 .deal-container {
@@ -249,24 +254,23 @@ body {
 
 .deal-picture {
 	background-color: #adadad;
-	border: solid 1px;
+	border: solid 1px #000;
 	text-align: center;
 	height: 150px;
 	width: 150px;
 }
 
 .deal-title {
-	background-color: #efefef;
 	margin-top: 5px;
 	padding: 0px;
 	border: solid 1px;
 	text-align: center;
+	font-weight: bold;
 	height: 40px;
 	width: auto;
 }
 
 .deal-description {
-	background-color: #ededed;
 	margin-top: 5px;
 	padding: 0px;
 	border: solid 1px;
@@ -275,10 +279,22 @@ body {
 	width: auto;
 }
 
+.deal-description p {
+	font-size: 120%;
+}
+
 .show-more-button {
-	border: solid 1px;
+	border: solid 1px #888;
 	text-align: center;
 	height: 20px;
 	width: auto;
 	margin-bottom: 25px;
+
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+.deal {
+	margin: 10px;
 }

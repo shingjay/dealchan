@@ -16,8 +16,6 @@ class Dealchan.Pages.DealContainer
 
 		containerTemplate = @template(template_data)
 
-		window.tempo = containerTemplate
-
 		element.append(containerTemplate)
 
 		$.getJSON api_url, (data)->
@@ -29,9 +27,7 @@ class Dealchan.Pages.DealContainer
 				category_id : category_id
 				category_name : category_name['label']
 			}
-			
-			console.log category_id
-			console.log template_data
+
 			$("#deal-container-#{category_id} .deal-container").append(@template(template_data))
 
 			if data.deals.length is 0
@@ -42,9 +38,6 @@ class Dealchan.Pages.DealContainer
 			callback_function(category_id, category_name)
 			
 			for singleDeal in data['deals']
-		
 				deal_id = singleDeal['deal']['id']
-		
 				$("#deal-id-#{deal_id}").on 'click',{ id : deal_id }, (event)->
-		
 					Dealchan.Layouts.ShowDealPopover.displayPopover event.data.id
